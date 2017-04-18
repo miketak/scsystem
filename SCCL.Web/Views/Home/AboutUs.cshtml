@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "About Us";
+}
+
+<!--Title Strip-->
+<section id="content-region-3" class="page-tree-bg">
+    <div class="container">
+        <p class="page-tree-text">@Html.Partial("_BreadCrumps")</p>
+    </div>
+</section>
+<!--End of Title Strip-->
+
+<div class="space-20"></div>
+
+<div class="container">
+    <div class="row">
+        @*Column 1*@
+        <div class="col-md-6">
+            <h4 class="heading-mini">About Us</h4>
+            <p>
+                Stable Corps is the premier engineering design company in the West African sub region that deals
+                with solving technology problems using the most advanced engineering methodologies. We are a group
+                of highly skilled professionals with one upheld goal- to move the world forward through technology.
+
+            </p>
+            <p>
+                We are more than pleased to serve you and be your one stop solution to engineering technology
+                road-blocks. Our service strategy is simple-
+            </p>
+
+            <ul class="icon-list list-unstyled">
+                <li><i class="ion-checkmark-round"></i> Define</li>
+                <li><i class="ion-checkmark-round"></i> Analyse</li>
+                <li><i class="ion-checkmark-round"></i> Solve</li>
+                <li><i class="ion-checkmark-round"></i> Deliver</li>
+            </ul>
+
+            <p>
+                Kindly contact us or browse our rich content of information to know more about Stable Corps Company Limited.
+            </p>
+        </div>
+        @*End of Column-1*@
+
+        @*Column 2*@
+        <div class="col-md-6">
+            <div class="flexslider">
+                <ul class="slides">
+                    <li>
+                        <img src="~/Content/Images/About/about-1.jpg" class="img-responsive" alt="about us - 1" />
+                    </li>
+                    <li>
+                        <img src="~/Content/Images/About/about-2.jpg" class="img-responsive" alt="about us - 2" />
+                    </li>
+                    <li>
+                        <img src="~/Content/Images/About/about-3.jpg" class="img-responsive" alt="about us - 3" />
+                    </li>
+                    <li>
+                        <img src="~/Content/Images/About/about-4.jpg" class="img-responsive" alt="about us - 4" />
+                    </li>
+                    <li>
+                        <img src="~/Content/Images/About/about-5.jpg" class="img-responsive" alt="about us - 5" />
+                    </li>
+                </ul>
+            </div><!--flex slider-->
+        </div>
+        @*End of Column 2*@
+    </div>
+    <!--about company row end-->
+</div>
+
+<div class="space-70"></div>
+
+<section id="content-region-2" class="padding-40 parallax-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="testimonials">
+                    <ul class="slides">
+                        @Html.Partial("_Testimonials")
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> <!--testimonials section end here-->

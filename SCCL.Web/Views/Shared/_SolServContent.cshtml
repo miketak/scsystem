@@ -1,0 +1,31 @@
+﻿@model SCCL.Web.ViewModels.SolutionServiceViewModel
+           
+
+@if (ViewBag.NavTitle == "Solutions")
+{
+    if (Model.Solution.ImageData == null)
+    {
+        <h1>@Model.Solution.Name</h1>
+    }
+    else
+    {
+        <img class="img-responsive" width="1920" height="700" src="@Url.Action("GetImage", "Solutions", new {Model.Solution.Id})" alt="Service Image" />
+    }
+}
+else
+{
+    if (Model.Service.ImageData == null)
+    {
+        <h1>@Model.Service.Name</h1>
+    }
+    else
+    {
+        <img class="img-responsive" width="1920" height="700" src="@Url.Action("GetImage", "Services", new {Model.Solution.Id})" alt="Service Image"/>
+    }
+}
+   
+<div class="space-30"></div>
+        
+<p>
+    @(ViewBag.NavTitle == "Solutions" ? Model.Solution.Description : Model.Service.Description)
+</p>

@@ -1,0 +1,201 @@
+﻿@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_WebLayout.cshtml";
+}
+
+<section id="slider-sec" class="slider-reg">
+    <div class="main-flex-slider">
+        <ul class="slides">
+            <li>
+                <figure>
+                    <img src="~/content/Images/img-1.jpg" class="img-responsive" alt="Innovation for those who do">
+                    <figcaption class="slider-overlay ">
+                        <div class="slider-text animated fadeInDown">
+                            <h1>Innovation for those who do</h1>
+                            <p>
+                                Specialists trained to do what they do best
+                            </p>
+                            <p class="slide-btn">
+                                @Html.ActionLink("Read More", "Index", "AboutUs", null, new { @class = "btn btn-white btn-lg" })
+                            </p>
+                        </div>
+                    </figcaption>
+                </figure>
+            </li>
+
+            <li>
+                <figure>
+                    <img src="~/content/Images/img-2.jpg" class="img-responsive" alt="Services tailored for a growing economy">
+                    <figcaption class="slider-overlay">
+                        <div class="slider-text">
+                            <h1>Services tailored for a growing economy</h1>
+                            <p>
+                                Want to boost productivity in your company?
+                            </p>
+                            <p class="slide-btn">
+                                @Html.ActionLink("See Services", "Index", "Services", null, new { @class = "btn btn-white btn-lg" })
+                            </p>
+                        </div>
+                    </figcaption>
+                </figure>
+            </li>
+
+            <li>
+                <figure>
+                    <img src="~/content/Images/img-3.jpg" class="img-responsive" alt="A new world through innovation">
+                    <figcaption class="slider-overlay">
+                        <div class="slider-text">
+                            <h1>A new world through innovation</h1>
+                            <p>
+                                We innovate for small and large enterprises
+                            </p>
+                            <p class="slide-btn">
+                                @Html.ActionLink("Contact Us", "Index", "Contact", null, new { @class = "btn btn-white btn-lg" })
+                            </p>
+                        </div>
+                    </figcaption>
+                </figure>
+            </li>
+
+        </ul>
+    </div>
+</section><!--main flex slider end-->
+
+
+<div class="space-50"></div>
+
+<div class="container">
+    <div class="row intro-row">
+        <div class="col-md-12 text-center wow animated fadeInUp">
+            <h2>Products & Services</h2>
+            <h3 class="subtitle">Browse by category</h3>
+        </div>
+
+        <div class="space-70"></div>
+
+        <div class=" col-sm-4">
+            <div class="services-box">
+                <i class="ion-earth"></i>
+                <h1>
+                    <a href="renewable-energy.php">Renewable Energy</a>
+                </h1>
+                <p>
+                    Renewable energy is the next generation of power supply for a sustainable future.
+                </p>
+                <p align="center">
+                    Read More ...
+                </p>
+            </div>
+        </div><!--services box 1-->
+
+        <div class=" col-sm-4">
+            <div class="services-box">
+                <i class="ion-wrench"></i>
+                <h1>
+                    <a href="manufacturing-technology.php">Manufacturing Tech and Design</a>
+                </h1>
+                <p>
+                    A thriving economy requires cutting edge innovation to power it.
+                </p>
+                <p align="center">
+                    Read More ...
+                </p>
+            </div>
+        </div><!--services box 2-->
+
+        <div class="col-sm-4">
+            <div class="services-box">
+                <i class="ion-medkit"></i>
+                <h1>
+                    <a href="healthcare.php">Healthcare</a>
+                </h1>
+                <p>
+                    An assured high quality of life is through a working health system
+                </p>
+                <p align="center">
+                    Read More ...
+                </p>
+            </div>
+        </div><!--services box 3-->
+
+        <div class="space-70"></div>
+
+        <div class="col-sm-4">
+            <div class="services-box">
+                <i class="ion-gear-a"></i>
+                <h1>
+                    <a href="agriculture.php">Agriculture</a>
+                </h1>
+                <p>
+                    Food security is stimulated through innovative technologies and solutions.
+                </p>
+                <p align="center">
+                    Read More ...
+                </p>
+            </div>
+        </div><!--services box 4-->
+
+        <div class="col-sm-4">
+            <div class="services-box">
+                <i class="ion-beaker"></i>
+                <h1>
+                    <a href="chemical-process-design.php">Chemical Process Design</a>
+                </h1>
+                <p>
+                    Automation is the baseline of higher efficiency in plant operation. Increase productivity.
+                </p>
+                <p align="center">
+                    Read More ...
+                </p>
+            </div>
+        </div><!--services box 5-->
+
+        <div class="col-sm-4">
+            <div class="services-box">
+                <i class="ion-person"></i>
+                <h1>
+                    <a href="consumer-products.php">Consumer Products</a>
+                </h1>
+                <p>
+                    Innovation in consumer products is what improves our quality of life.
+                </p>
+                <p align="center">
+                    Read More ...
+                </p>
+            </div>
+        </div><!--services box-->
+    </div><!--row end-->
+</div><!--intro with services end-->
+
+
+<div class="space-70"></div>
+<section id="content-region-1" class="padding-40">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center wow animated fadeInUp">
+                <!--<div class="col-md-7 features">-->
+                <h3>Our services</h3>
+                <p>
+                    Read and browse more about our services.
+                </p>
+                <div class="space-30"></div>
+
+                <a href="services.php" class="btn btn-lg theme-btn-color">Read More</a>
+            </div>
+        </div><!--container-->
+    </div>
+</section><!--features end-->
+
+<section id="content-region-2" class="padding-40 parallax-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="testimonials">
+                    <ul class="slides">
+                        @Html.Partial("_Testimonials")
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> <!--testimonials section end here-->

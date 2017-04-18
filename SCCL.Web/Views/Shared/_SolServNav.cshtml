@@ -1,0 +1,94 @@
+﻿@model SCCL.Web.ViewModels.SolutionServiceViewModel
+
+<!--Search-->
+<div class="sidebar-box">
+    <div class="widget-search">
+        <form class="search-form">
+            <input type="text" class="form-control" placeholder="search here...">
+            <i class="ion-search" data-toggle="tooltip" data-placement="top" title="" data-original-title="hit enter to search"></i>
+        </form>
+    </div>
+</div>
+<!--End of Search-->
+
+<hr>
+
+<!--SolServices Nav-->
+<div class="sidebar-box">
+    <h4>@ViewBag.NavTitle</h4>
+    <ul class="cat-list">
+        @{
+            if (ViewBag.NavTitle == "Solutions")
+            {
+                foreach (var p in Model.Solutions)
+                {
+                    
+                    <li>
+                        @Html.ActionLink(p.Name, "Detail", "Solutions",  new {p.Id}, new {@class = "hover-color"})
+                    </li>
+                }
+            }
+            else
+            {
+                foreach (var p in Model.Services)
+                {
+                    <li>@Html.ActionLink(p.Name, "Detail", "Services", new{p.Id}, new {@class = "hover-color"})</li>
+                }
+            }
+        }
+    </ul>
+</div>
+<!--End of SolServices Nav-->
+
+@*<hr>*@
+
+<!--Solution Specific Services-->
+@*<div class="sidebar-box">
+    <h4>Services</h4>
+    <ul class="cat-list">
+                //Will be trigerred on the details section
+    </ul>
+</div>*@
+<!--End of Solution Specific Services-->
+
+@{
+    //<!--Solution Specific Products-->
+    //<!--End of Solution Specific Products-->
+}
+
+<hr>
+
+<!--Social-->
+<div class="sidebar-box">
+    <h4>Connect with us</h4>
+    <ul class=" list-inline social-btn">
+        <li>
+            <a target="_blank" href="https://www.facebook.com/StableCorps">
+                <i class="ion-social-facebook" data-toggle="tooltip" data-placement="top" title="" data-original-title="Like On Facebook"></i>
+            </a>
+        </li>
+        <li>
+            <a target="_blank" href="https://twitter.com/stablecorps">
+                <i class="ion-social-twitter" data-toggle="tooltip" data-placement="top" title="" data-original-title="Follow On twitter"></i>
+            </a>
+        </li>
+        <li>
+            <a target="_blank" href="https://plus.google.com/105370864366823037587/about">
+                <i class="ion-social-googleplus" data-toggle="tooltip" data-placement="top" title="" data-original-title="Follow On googleplus"></i>
+            </a>
+        </li>
+        <li>
+            <a target="_blank" href="https://www.pinterest.com/stablecorps">
+                <i class="ion-social-pinterest" data-toggle="tooltip" data-placement="top" title="" data-original-title="pinterest"></i>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="ion-social-skype" data-toggle="tooltip" data-placement="top" title="" data-original-title="skype"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+<!--End of Social-->
+
+<hr>
