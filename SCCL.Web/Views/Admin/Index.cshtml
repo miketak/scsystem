@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Admin Options</h2>
+
+<ul>
+    <li>@Html.ActionLink("SCSite", "Index", "SiteAdmin", null, new { @class = "btn btn-lg" })</li>
+    @*Site Admin Controller*@
+
+    <li>@Html.ActionLink("Employee Portal", "App", "Admin", null, new { @class = "btn btn-lg" })</li>
+    @*Site Admin Controller*@
+
+    <li>@Html.ActionLink("Projects Portal", "App", "Admin", null, new { @class = "btn btn-lg" })</li>
+    @*Project Portal Controller*@
+
+    <li>@Html.ActionLink("Blog", "App", "Admin", null, new { @class = "btn btn-lg" })</li>
+    @*Blog Controller*@
+</ul>
