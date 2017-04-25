@@ -190,6 +190,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Migrations\201704242333286_First Migration.cs" />
+    <Compile Include="Migrations\201704242333286_First Migration.Designer.cs">
+      <DependentUpon>201704242333286_First Migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -229,6 +234,10 @@
     <Content Include="Content\ionicons.eot" />
     <Content Include="Content\ionicons.ttf" />
     <Content Include="Content\ionicons.woff" />
+    <Content Include="Class Diagrams\AccountController.cd" />
+    <Content Include="Class Diagrams\AdminController.cd" />
+    <Content Include="Class Diagrams\HomeController.cd" />
+    <Content Include="Class Diagrams\ManageController.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jqBootstrapValidation.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -286,7 +295,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_WebLayout.cshtml" />
-    <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Shared\_BreadCrumps.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_ImageUploadSer.cshtml" />
@@ -320,6 +328,11 @@
       <Project>{281de029-41e1-4a4d-adcf-3f810a46d849}</Project>
       <Name>SCCL.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201704242333286_First Migration.resx">
+      <DependentUpon>201704242333286_First Migration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

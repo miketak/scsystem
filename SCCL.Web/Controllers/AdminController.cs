@@ -9,6 +9,12 @@ namespace SCCL.Web.Controllers
     public class AdminController : Controller
     {
         // GET: Admin
+        /// <summary>
+        /// Shows a menu of items for the admin
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
         public ActionResult Index()
         {
             return View();
