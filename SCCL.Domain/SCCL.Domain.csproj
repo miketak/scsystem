@@ -80,6 +80,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagrams\AbstractClasses.cd" />
+    <None Include="ClassDiagrams\DataAccess.cd" />
+    <None Include="ClassDiagrams\ConcreteClasses.cd" />
+    <None Include="ClassDiagrams\Entities.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

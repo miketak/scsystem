@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="SCCL.Domain.DataAccess.ServicesAccessor">
+    <Position X="0.5" Y="0.5" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABAA=</HashCode>
+      <FileName>DataAccess\ServicesAccessor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SCCL.Domain.DataAccess.SolutionsAccessor">
+    <Position X="0.5" Y="2.5" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAQAAAAAAAABAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>DataAccess\SolutionsAccessor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SCCL.Domain.DataAccess.DbConnection">
+    <Position X="5.25" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>DataAccess\DbConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

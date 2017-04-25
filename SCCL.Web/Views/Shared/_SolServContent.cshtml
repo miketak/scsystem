@@ -9,7 +9,7 @@
     }
     else
     {
-        <img class="img-responsive" width="1920" height="700" src="@Url.Action("GetImage", "Solutions", new {Model.Solution.Id})" alt="Service Image" />
+        <img class="img-responsive" src="@Url.Action("GetImage", "Solutions", new {Model.Solution.Id})" alt="Service Image" width="1920" height="700" />
     }
 }
 else
@@ -20,7 +20,7 @@ else
     }
     else
     {
-        <img class="img-responsive" width="1920" height="700" src="@Url.Action("GetImage", "Services", new {Model.Service.Id})" alt="Service Image"/>
+        <img class="img-responsive" src="@Url.Action("GetImage", "Services", new {Model.Service.Id})" alt="Service Image" width="1920" height="700" />
     }
 }
    

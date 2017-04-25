@@ -234,10 +234,7 @@
     <Content Include="Content\ionicons.eot" />
     <Content Include="Content\ionicons.ttf" />
     <Content Include="Content\ionicons.woff" />
-    <Content Include="Class Diagrams\AccountController.cd" />
-    <Content Include="Class Diagrams\AdminController.cd" />
-    <Content Include="Class Diagrams\HomeController.cd" />
-    <Content Include="Class Diagrams\ManageController.cd" />
+    <Content Include="Class Diagrams\Controllers.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jqBootstrapValidation.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
