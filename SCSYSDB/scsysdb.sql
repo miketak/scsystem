@@ -14,7 +14,8 @@ GO
 USE [SCSYSDB]
 GO
 
-
+print 'Created Solutions Table'
+GO
 Create table Solutions
 (
 	[SolutionsId] 				INT NOT NULL PRIMARY KEY IDENTITY,
@@ -23,7 +24,10 @@ Create table Solutions
 	[Name] NVARCHAR(100) 		NOT NULL,
 	[DESCRIPTION] NVARCHAR(512) 	NOT NULL,
 )
+GO
 
+print 'Created Services Table'
+GO
 Create table Services
 (
 	[ServicesId] 				INT NOT NULL PRIMARY KEY IDENTITY,
@@ -32,6 +36,17 @@ Create table Services
 	[Name] 						NVARCHAR(100) NOT NULL,
 	[DESCRIPTION] NVARCHAR(512) NOT NULL,
 )
+GO
+
+print 'Create Testimonials Table'
+GO
+Create table Testimonials
+(
+	[Id] 					INT NOT NULL PRIMARY KEY IDENTITY,
+	[Message] 				varchar(512) not null,
+	[Author]				varchar (512) default null
+)
+GO
 
 Create table Solutions_Services
 (
@@ -90,6 +105,16 @@ INSERT INTO [dbo].[Solutions_Services]
 	(3,3)
 GO
 
+print '*** Inserting Testimonials Data ***'
+GO
+INSERT INTO [dbo].[Testimonials]
+	(Message, Author)
+	VALUES
+	('These people are the best', 'Dr. Frank Nyarko - Mechanical Engineering Dept, KNUST'),
+	('I worked with them before and they are sure a mark of excellence above normal standards', 'Richard Adokoh - Ghana Standards Authority'),
+	('Diverse talents grouped in one single place','Mr. Aveyire - Agricultural Engineering Dept, KNUST' )
+GO
+
 print '' print  ' *** creating procedure sp_retrieve_solutions'
 GO
 Create PROCEDURE sp_retrieve_solutions
@@ -108,6 +133,15 @@ SELECT ServicesId, Name, Description, ImageMimeType, ImageData
 FROM Services
 END
 GO
+
+print '' print  ' *** creating procedure sp_retrieve_testimonials'
+GO
+Create PROCEDURE sp_retrieve_testimonials
+AS
+BEGIN
+SELECT Id, Message, Author
+FROM Testimonials
+END
 
 print '' print '*** Creating sp_update_solution'
 GO

@@ -1,8 +1,11 @@
-﻿@{
+﻿@model SCCL.Web.ViewModels.HomeViewModel
+
+@{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_WebLayout.cshtml";
 }
 
+@*Flex Slider*@
 <section id="slider-sec" class="slider-reg">
     <div class="main-flex-slider">
         <ul class="slides">
@@ -60,10 +63,11 @@
         </ul>
     </div>
 </section><!--main flex slider end-->
-
+@*End of Flex Slider*@
 
 <div class="space-50"></div>
 
+@*Ionicons Section*@
 <div class="container">
     <div class="row intro-row">
         <div class="col-md-12 text-center wow animated fadeInUp">
@@ -166,9 +170,11 @@
         </div><!--services box-->
     </div><!--row end-->
 </div><!--intro with services end-->
-
+@*End of Ionicons Section*@
 
 <div class="space-70"></div>
+
+@*Our Services Strip*@
 <section id="content-region-1" class="padding-40">
     <div class="container">
         <div class="row">
@@ -184,18 +190,21 @@
             </div>
         </div><!--container-->
     </div>
-</section><!--features end-->
+</section>
+@*End of Services Strip*@ 
 
+@*Testimonial Section*@
 <section id="content-region-2" class="padding-40 parallax-1">
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
                 <div class="testimonials">
                     <ul class="slides">
-                        @Html.Partial("_Testimonials")
+                        @Html.Partial("_Testimonials", Model)
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-</section> <!--testimonials section end here-->
+</section>
+@*End of Testimonial Session*@

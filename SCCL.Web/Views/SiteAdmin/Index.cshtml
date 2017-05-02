@@ -1,5 +1,4 @@
-﻿@model SCCL.Web.ViewModels.SolutionServiceViewModel
-
+﻿@model SCCL.Web.ViewModels.SiteAdminViewModel
 
 @{
     ViewBag.Title = "Website Administrator";
@@ -7,6 +6,7 @@
 }
 <h1>Site Admin Index</h1>
 
+@*Solutions Admin Section*@
 <h2>List of Solutions</h2>
 <table class="table">
     <tr>
@@ -47,9 +47,11 @@
 <p>
     @Html.ActionLink("Create New", "Create", "Solutions", new {@class = "btn btn-lg theme-btn-color"}, null)
 </p>
-
+@*End of Solutions Admin Section*@
 
 <br/><br/>
+
+@*Services Admin Section*@
 <h2>List of Services</h2>
 <table class="table">
     <tr>
@@ -90,6 +92,50 @@
 <p>
     @Html.ActionLink("Create New", "Create", "Services", new {@class = "btn btn-lg theme-btn-color"}, null)
 </p>
+@*End of Services Admin Section*@
+
+@*Testimonials Admin Section*@
+<h2>List of Testimonials</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Testimonial.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Testimonial.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Testimonial.Message)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var testimonial in Model.Testimonials)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => testimonial.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => testimonial.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => testimonial.Message)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Testimonial", new { id = testimonial.Id }, null) |
+                @Html.ActionLink("Delete", "Delete", "Testimonial", new { id = testimonial.Id }, null)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<p>
+    @Html.ActionLink("Create New", "Create", "Testimonial", new { @class = "btn btn-lg theme-btn-color" }, null)
+</p>
+@*End of Testimonials Admin Section*@
 
 
 

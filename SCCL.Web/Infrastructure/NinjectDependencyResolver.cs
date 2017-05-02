@@ -56,6 +56,7 @@ namespace SCCL.Web.Infrastructure
 
             _kernel.Bind<ISolutionRepository>().To<SCSYSRepository>();
             _kernel.Bind<IServiceRepository>().To<SCSYSRepository>();
+            _kernel.Bind<ITestimonialRepository>().To<SCSYSRepository>();
         }
     }
 }

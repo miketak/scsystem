@@ -71,12 +71,15 @@
   <ItemGroup>
     <Compile Include="Abstract\IServiceRepository.cs" />
     <Compile Include="Abstract\ISolutionRepository.cs" />
+    <Compile Include="Abstract\ITestimonialRepository.cs" />
     <Compile Include="Concrete\SCSYSRepository.cs" />
     <Compile Include="DataAccess\DbConnection.cs" />
     <Compile Include="DataAccess\ServicesAccessor.cs" />
     <Compile Include="DataAccess\SolutionsAccessor.cs" />
+    <Compile Include="DataAccess\TestimonialAccessor.cs" />
     <Compile Include="Entities\Service.cs" />
     <Compile Include="Entities\Solution.cs" />
+    <Compile Include="Entities\Testimonial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

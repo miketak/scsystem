@@ -12,24 +12,35 @@ namespace SCCL.Web.Controllers
     {
         private readonly ISolutionRepository _solutionrepository;
         private readonly IServiceRepository _servicerepository;
+        private readonly ITestimonialRepository _testimonialrepository;
         private SolutionServiceViewModel solutionservices;
+        private SiteAdminViewModel siteAdminViewModel;
 
-        public SiteAdminController(ISolutionRepository solutionRepository, IServiceRepository serviceRepository)
+        public SiteAdminController(ISolutionRepository solutionRepository, IServiceRepository serviceRepository,
+            ITestimonialRepository testimonialRepository)
         {
             _solutionrepository = solutionRepository;
             _servicerepository = serviceRepository;
+            _testimonialrepository = testimonialRepository;
         }
 
         // GET: SiteAdmin
         public ActionResult Index()
         {
-            solutionservices = new SolutionServiceViewModel
+            //solutionservices = new SolutionServiceViewModel
+            //{
+            //    Solutions = _solutionrepository.Solutions,
+            //    Services = _servicerepository.Services
+            //};
+
+            siteAdminViewModel = new SiteAdminViewModel
             {
                 Solutions = _solutionrepository.Solutions,
-                Services = _servicerepository.Services
+                Services = _servicerepository.Services,
+                Testimonials = _testimonialrepository.Testimonials
             };
 
-            return View(solutionservices);
+            return View(siteAdminViewModel);
         }
 
 
