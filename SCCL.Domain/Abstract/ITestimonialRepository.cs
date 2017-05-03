@@ -12,5 +12,8 @@ namespace SCCL.Domain.Abstract
         IEnumerable<Testimonial> Testimonials { get; }
 
         Testimonial Testimonial { get; set; }
+
+        bool DeteteTestimonial(int id);
+        bool CreateTestimonial(Testimonial testimonial);
     }
 }

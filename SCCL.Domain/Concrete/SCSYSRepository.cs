@@ -42,13 +42,34 @@ namespace SCCL.Domain.Concrete
         {
             get
             {
-                // gets by id
                 throw new System.NotImplementedException();
             }
             set
             {
                 TestimonialAccessor.UpdateTestimonial(value);
             }
+        }
+
+        /// <summary>
+        /// Deletes a testimonial by id
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public bool DeteteTestimonial(int id)
+        {
+            return TestimonialAccessor.DeleteTestimonial(id);
+        }
+
+        /// <summary>
+        /// Creates a new testimonial
+        /// 
+        /// </summary>
+        /// <param name="testimonial"></param>
+        /// <returns></returns>
+        public bool CreateTestimonial(Testimonial testimonial)
+        {
+            return TestimonialAccessor.CreateTestimonial(testimonial);
         }
     }
 }

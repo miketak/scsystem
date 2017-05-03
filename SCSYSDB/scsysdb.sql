@@ -199,6 +199,46 @@ AS
 	END
 GO
 
+print '' print '*** Creating sp_update_testimonial'
+GO
+CREATE PROCEDURE [dbo].[sp_update_testimonial]
+	(
+		@Id						[int],
+		
+		@oldauthor				[varchar](512), 
+		@oldmessage				[varchar](512), 
+		
+		@newauthor				[varchar](512), 
+		@newmessage				[varchar](512)
+		
+		
+	)
+AS
+	BEGIN
+		UPDATE Testimonials
+		  SET Author = @newauthor,
+			  Message = @newmessage
+		WHERE Id = @Id
+		  AND Author = @oldauthor
+		  AND Message = @oldmessage
+		RETURN @@ROWCOUNT
+	END
+GO
+
+print '' print  '*** Creating procedure sp_delete_testimonial'
+GO
+CREATE PROCEDURE sp_delete_testimonial
+(
+	@ID				[INT]
+)
+AS
+	BEGIN
+		DELETE FROM Testimonials
+		WHERE Id = @ID
+		RETURN @@ROWCOUNT
+	END
+GO
+
 print '' print  '*** Creating procedure sp_delete_solution'
 GO
 CREATE PROCEDURE sp_delete_solution
@@ -212,6 +252,8 @@ AS
 		RETURN @@ROWCOUNT
 	END
 GO
+
+
 
 print '' print  '*** Creating procedure sp_delete_service'
 GO
@@ -265,4 +307,19 @@ AS
 	END
 GO
 
-
+print '' print '*** Creating sp_create_testimonial'
+GO
+CREATE PROCEDURE [dbo].[sp_create_testimonial]
+(
+	@AUTHOR				[VARCHAR](512),
+	@MESSAGE			[VARCHAR](512)
+)
+AS
+	BEGIN
+		INSERT INTO [dbo].[Testimonials]
+			(AUTHOR, MESSAGE)
+		VALUES
+			(@AUTHOR, @MESSAGE)
+		RETURN @@ROWCOUNT
+	END
+GO

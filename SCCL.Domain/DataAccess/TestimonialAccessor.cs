@@ -12,7 +12,7 @@ namespace SCCL.Domain.DataAccess
     public enum DBStatus
     {
         UpdateFailed,
-        UpdateSuccess
+        NoLongerExists
     };
 
     public class TestimonialAccessor
@@ -55,7 +55,6 @@ namespace SCCL.Domain.DataAccess
             return testimonials;
         }
 
-
         /// <summary>
         /// Updates Testimonial
         /// 
@@ -65,10 +64,13 @@ namespace SCCL.Domain.DataAccess
         {
             var oldTestimonial = RetrieveTestimonials().FirstOrDefault( t => t.Id == newTestimonial.Id);
 
+            if (oldTestimonial == null)
+                throw new ApplicationException(DBStatus.NoLongerExists.ToString());
+
             var rowsAffected = 0;
 
             var conn = DbConnection.GetConnection();
-            var cmdText = @"sp_update_testimonial";
+            const string cmdText = @"sp_update_testimonial";
 
             using (var cmd = new SqlCommand(cmdText, conn) { CommandType = CommandType.StoredProcedure })
             {
@@ -93,6 +95,56 @@ namespace SCCL.Domain.DataAccess
 
             if (rowsAffected != 1)
                 throw new ApplicationException( DBStatus.UpdateFailed.ToString() );
+        }
+
+        public static bool DeleteTestimonial(int id)
+        {
+            var rowsAffected = 0;
+
+            var conn = DbConnection.GetConnection();
+            const string cmdText = @"sp_delete_testimonial";
+
+            using (var cmd = new SqlCommand(cmdText, conn) { CommandType = CommandType.StoredProcedure })
+            {
+                cmd.Parameters.AddWithValue("@Id", id);
+
+                try
+                {
+                    conn.Open();
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            return rowsAffected == 1;
+        }
+
+        internal static bool CreateTestimonial(Testimonial testimonial)
+        {
+            var rowsAffected = 0;
+
+            var conn = DbConnection.GetConnection();
+            const string cmdText = @"sp_create_testimonial";
+
+            using (var cmd = new SqlCommand(cmdText, conn) {CommandType = CommandType.StoredProcedure})
+            {
+                cmd.Parameters.AddWithValue("@AUTHOR", testimonial.Author);
+                cmd.Parameters.AddWithValue("@MESSAGE", testimonial.Message);
+
+                try
+                {
+                    conn.Open();
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    throw;
+                }
+            }
+
+            return rowsAffected == 1;
         }
     }
 }

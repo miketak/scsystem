@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using SCCL.Domain.DataAccess;
 
 namespace SCCL.Web.Controllers
 {
@@ -48,62 +50,72 @@ namespace SCCL.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Testimonial newTestimonial)
         {
-            if (ModelState.IsValid)
-            {
-                var oldTestimonial = _repository.Testimonials.FirstOrDefault(t => t.Id == newTestimonial.Id);
+            if (!ModelState.IsValid)
+                return RedirectToAction("Index", "SiteAdmin");
 
-                try
-                {
-                    if (_repository.Testimonials(oldTestimonial) )//SolutionsAccessor.UpdateSolution(oldSolution, newSolution))
-                        return RedirectToAction("Index", "SiteAdmin", new { area = "" });
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message);
-                }
+            try
+            {
+                _repository.Testimonial = newTestimonial;
+                return RedirectToAction("Index", "SiteAdmin", new {area = ""});
+            }
+            catch (ApplicationException ex)
+            {
+                if (ex.Message == DBStatus.UpdateFailed.ToString())
+                    return RedirectToAction("Edit");
+                if (ex.Message == DBStatus.NoLongerExists.ToString())
+                    return RedirectToAction("Index", "SiteAdmin");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
             }
 
-            return View(newSolution);
+            return RedirectToAction("Index", "SiteAdmin");
+        }
+
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+               if ( _repository.DeteteTestimonial(id) )
+                   return RedirectToAction("Index", "SiteAdmin", new { area = "" });
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return RedirectToAction("Index", "SiteAdmin", new { area = "" });
+            }
+
+            return RedirectToAction("Index", "SiteAdmin", new { area = "" });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Testimonial testimonial)
+        {
+            if (!ModelState.IsValid) 
+                return RedirectToAction("Index", "SiteAdmin");
+
+            try
+            {
+                if ( _repository.CreateTestimonial( testimonial ))
+                    return RedirectToAction("Index", "SiteAdmin");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+
+
+            return RedirectToAction("Index", "SiteAdmin");
+        }
+
+        public ActionResult Create()
+        {
+            return View(new Testimonial());
         }
 
 
-        //// Admin Functionality
-
-        //public ActionResult Create()
-        //{
-        //    return View(new Solution());
-        //}
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "Name, Description, ImageMimeType, ImageData")] Solution solution,
-        //    HttpPostedFileBase image = null)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        if (image != null)
-        //        {
-        //            solution.ImageMimeType = image.ContentType;
-        //            solution.ImageData = new byte[image.ContentLength];
-        //            image.InputStream.Read(solution.ImageData, 0, image.ContentLength);
-        //        }
-
-        //        try
-        //        {
-        //            if (!SolutionsAccessor.CreateSolution(solution))
-        //                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Debug.WriteLine(ex.Message);
-        //        }
-
-
-        //        return RedirectToAction("Index", "SiteAdmin");
-        //    }
-
-        //    return RedirectToAction("Index", "SiteAdmin");
-        //}
 
 
 
@@ -116,12 +128,7 @@ namespace SCCL.Web.Controllers
         //    return View("Edit", solution);
         //}
 
-        //public ActionResult Delete(int id)
-        //{
-        //    SolutionsAccessor.DeleteSolution(id);
 
-        //    return RedirectToAction("Index", "SiteAdmin", new { area = "" });
-        //}
 
 
     }
