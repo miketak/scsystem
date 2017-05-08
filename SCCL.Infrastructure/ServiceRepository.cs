@@ -10,6 +10,7 @@ namespace SCCL.Infrastructure
 {
     public class ServiceRepository : IServiceRepository
     {
+
         public IEnumerable<Service> Services
         {
             get
