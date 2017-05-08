@@ -1,0 +1,28 @@
+﻿.adminstyle {
+    background-color: blue;
+}
+
+.makewhite {
+    color: white;
+}
+
+.adminTitle {
+    color: black;
+}
+
+.admincontainer {
+    background-color: lightblue;
+    padding: 10px;
+    border: 5px solid blue;
+    border-radius: 20px;
+    margin-bottom: 30px;
+}
+
+.admincontainer table {
+    background-color: white;
+}
+
+.admincontainer a {
+    color: blue;
+    font-family: bold;
+}

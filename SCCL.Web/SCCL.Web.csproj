@@ -206,6 +206,7 @@
     <Compile Include="ViewModels\SolutionServiceViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\adminoverride.css" />
     <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap.css" />
@@ -314,6 +315,7 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Testimonial\Edit.cshtml" />
     <Content Include="Views\Testimonial\Create.cshtml" />
+    <Content Include="Views\Shared\PageNotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -326,15 +328,19 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SCCL.Domain\SCCL.Domain.csproj">
-      <Project>{281de029-41e1-4a4d-adcf-3f810a46d849}</Project>
-      <Name>SCCL.Domain</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Migrations\201704242333286_First Migration.resx">
       <DependentUpon>201704242333286_First Migration.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SCCL.Core\SCCL.Core.csproj">
+      <Project>{fb31687e-312f-4206-b2e9-32563a161618}</Project>
+      <Name>SCCL.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SCCL.Infrastructure\SCCL.Infrastructure.csproj">
+      <Project>{13c044e9-bd7b-4228-86e7-2c132c554c19}</Project>
+      <Name>SCCL.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

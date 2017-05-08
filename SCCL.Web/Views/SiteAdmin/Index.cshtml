@@ -4,137 +4,138 @@
     ViewBag.Title = "Website Administrator";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h1>Site Admin Index</h1>
+
+<div class="adminTitle">
+    <h1>SC Content Management System</h1>
+    <hr/>
+</div>
 
 @*Solutions Admin Section*@
-<h2>List of Solutions</h2>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Solution.Id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Solution.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Solution.Description)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var soln in Model.Solutions)
-    {
+<div class="admincontainer">
+    <h2>Solutions</h2>
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => soln.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => soln.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => soln.Description)
-            </td>
-            
-            <td>
-                @Html.ActionLink("Edit", "Edit", "Solutions", new { id = soln.Id } , null) |
-                @Html.ActionLink("Delete", "Delete", "Solutions", new { id = soln.Id }, null)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Solution.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Solution.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Solution.Description)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var soln in Model.Solutions)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => soln.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => soln.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => soln.Description)
+                </td>
 
-<p>
-    @Html.ActionLink("Create New", "Create", "Solutions", new {@class = "btn btn-lg theme-btn-color"}, null)
-</p>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Solutions", new { id = soln.Id }, new  {@class="btn btn-default" , @style = "width:200px;"})
+                    @Html.ActionLink("Delete", "Delete", "Solutions", new { id = soln.Id }, new { @class = "btn btn-default", @style = "width:200px;" })
+                </td>
+            </tr>
+        }
+
+    </table>
+        @Html.ActionLink("Create New", "Create", "Solutions", null, new { @class = "btn btn-default align-right", @style = "width:200px;" }) 
+</div>
 @*End of Solutions Admin Section*@
 
-<br/><br/>
-
 @*Services Admin Section*@
-<h2>List of Services</h2>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Service.Id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Service.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Service.Description)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var servc in Model.Services)
-    {
+<div class="admincontainer">
+    <h2>Services</h2>
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => servc.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => servc.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => servc.Description)
-            </td>
-            
-            <td>
-                @Html.ActionLink("Edit", "Edit", "Services", new { id = servc.Id } , null) |
-                @Html.ActionLink("Delete", "Delete", "Services", new { id = servc.Id }, null)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Service.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Service.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Service.Description)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var servc in Model.Services)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => servc.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => servc.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => servc.Description)
+                </td>
 
-<p>
-    @Html.ActionLink("Create New", "Create", "Services", new {@class = "btn btn-lg theme-btn-color"}, null)
-</p>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Services", new { id = servc.Id }, new { @class = "btn btn-default", @style = "width:200px;" })
+                    @Html.ActionLink("Delete", "Delete", "Services", new { id = servc.Id }, new { @class = "btn btn-default", @style = "width:200px;" })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+        @Html.ActionLink("Create New", "Create", "Services", null, new { @class = "btn btn-default", @style = "width:200px;" })
+</div> 
 @*End of Services Admin Section*@
 
 @*Testimonials Admin Section*@
-<h2>List of Testimonials</h2>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Testimonial.Id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Testimonial.Author)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Testimonial.Message)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var testimonial in Model.Testimonials)
-    {
+<div class="admincontainer">
+    <h2>Testimonials</h2>
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => testimonial.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => testimonial.Author)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => testimonial.Message)
-            </td>
-
-            <td>
-                @Html.ActionLink("Edit", "Edit", "Testimonial", new { id = testimonial.Id }, null)
-                @Html.ActionLink("Delete", "Delete", "Testimonial", new { id = testimonial.Id }, null)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Testimonial.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Testimonial.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Testimonial.Message)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var testimonial in Model.Testimonials)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => testimonial.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => testimonial.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => testimonial.Message)
+                </td>
 
-<p>
-    @Html.ActionLink("Create New", "Create", "Testimonial", new { @class = "btn btn-lg theme-btn-color" }, null)
-</p>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Testimonial", new { id = testimonial.Id }, new { @class = "btn btn-default", @style = "width:200px;" })
+                    @Html.ActionLink("Delete", "Delete", "Testimonial", new { id = testimonial.Id }, new { @class = "btn btn-default", @style = "width:200px;" })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+        @Html.ActionLink("Create New", "Create", "Testimonial", null, new { @class = "btn btn-default", @style = "width:200px;" })
+</div>
 @*End of Testimonials Admin Section*@
 
 

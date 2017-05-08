@@ -4,9 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using SCCL.Domain.Abstract;
-using SCCL.Domain.DataAccess;
-using SCCL.Domain.Entities;
+using SCCL.Core.Entities;
+using SCCL.Core.Interfaces;
 using SCCL.Web.ViewModels;
 
 namespace SCCL.Web.Controllers
@@ -14,7 +13,7 @@ namespace SCCL.Web.Controllers
     public class SolutionsController : Controller
     {
         private readonly ISolutionRepository _repository;
-        private SolutionServiceViewModel solutionservices;
+        private SolutionServiceViewModel _solutionservices;
 
         public SolutionsController(ISolutionRepository solutionRepository)
         {
@@ -24,24 +23,24 @@ namespace SCCL.Web.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            solutionservices = new SolutionServiceViewModel { Solutions = _repository.Solutions };
+            _solutionservices = new SolutionServiceViewModel { Solutions = _repository.Solutions };
             ViewBag.NavTitle = "Solutions";
 
-            var solution = _repository.Solutions.FirstOrDefault(p => p.Id == 1);
-            solutionservices.Solution = solution;
+            var solution = _repository.FindById(1);
+            _solutionservices.Solution = solution;
 
-            return View(solutionservices); //View(solutionservices);
+            return View(_solutionservices);
         }
 
         public ViewResult Detail(int id)
         {
-            solutionservices = new SolutionServiceViewModel { Solutions = _repository.Solutions };
+            _solutionservices = new SolutionServiceViewModel { Solutions = _repository.Solutions };
             ViewBag.NavTitle = "Solutions";
 
-            var solution = _repository.Solutions.FirstOrDefault(p => p.Id == id);
-            solutionservices.Solution = solution;
+            var solution = _repository.FindById(id);
+            _solutionservices.Solution = solution;
 
-            return View("Index", solutionservices);
+            return View("Index", _solutionservices);
         }
 
 
@@ -57,27 +56,24 @@ namespace SCCL.Web.Controllers
         public ActionResult Create([Bind(Include = "Name, Description, ImageMimeType, ImageData")] Solution solution,
             HttpPostedFileBase image = null)
         {
-            if (ModelState.IsValid)
-            {
-                if (image != null)
-                {
-                    solution.ImageMimeType = image.ContentType;
-                    solution.ImageData = new byte[image.ContentLength];
-                    image.InputStream.Read(solution.ImageData, 0, image.ContentLength);
-                }
-
-                try
-                {
-                    if (!SolutionsAccessor.CreateSolution(solution))
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message);
-                }
-
-
+            if (!ModelState.IsValid) 
                 return RedirectToAction("Index", "SiteAdmin");
+
+            if (image != null)
+            {
+                solution.ImageMimeType = image.ContentType;
+                solution.ImageData = new byte[image.ContentLength];
+                image.InputStream.Read(solution.ImageData, 0, image.ContentLength);
+            }
+
+            try
+            {
+                _repository.Add(solution);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             return RedirectToAction("Index", "SiteAdmin");
@@ -87,26 +83,24 @@ namespace SCCL.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Solution newSolution, HttpPostedFileBase image = null)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) 
+                return View(newSolution);
+
+            if (image != null)
             {
-                if (image != null)
-                {
-                    newSolution.ImageMimeType = image.ContentType;
-                    newSolution.ImageData = new byte[image.ContentLength];
-                    image.InputStream.Read(newSolution.ImageData, 0, image.ContentLength);
-                }
+                newSolution.ImageMimeType = image.ContentType;
+                newSolution.ImageData = new byte[image.ContentLength];
+                image.InputStream.Read(newSolution.ImageData, 0, image.ContentLength);
+            }
 
-                var oldSolution = _repository.Solutions.FirstOrDefault(b => b.Id == newSolution.Id);
-
-                try
-                {
-                    if (SolutionsAccessor.UpdateSolution(oldSolution, newSolution))
-                        return RedirectToAction("Index", "SiteAdmin", new { area = "" });
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message);
-                }
+            try
+            {
+                _repository.Edit(newSolution);       
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return RedirectToAction("Index", "SiteAdmin", new { area = "" });
             }
 
             return View(newSolution);
@@ -114,25 +108,33 @@ namespace SCCL.Web.Controllers
 
         public ActionResult Edit(int id)
         {
-            solutionservices = new SolutionServiceViewModel { Solutions = _repository.Solutions };
+            _solutionservices = new SolutionServiceViewModel { Solutions = _repository.Solutions };
 
-            var solution = _repository.Solutions.FirstOrDefault(p => p.Id == id);
+            var solution = _repository.FindById(id);
 
             return View("Edit", solution);
         }
 
         public ActionResult Delete(int id)
         {
-            SolutionsAccessor.DeleteSolution(id);
+            try
+            {
+                _repository.Remove(id); 
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return RedirectToAction("Index", "SiteAdmin", new { area = "" });
+            }
 
             return RedirectToAction("Index", "SiteAdmin", new { area = "" });
         }
 
         public FileContentResult GetImage(int id)
         {
-            solutionservices = new SolutionServiceViewModel { Solutions = _repository.Solutions };
+            _solutionservices = new SolutionServiceViewModel { Solutions = _repository.Solutions };
 
-            var solution = solutionservices.Solutions.FirstOrDefault(s => s.Id == id);
+            var solution = _repository.FindById(id);
 
             return solution != null ? File(solution.ImageData, solution.ImageMimeType) : null;
         }

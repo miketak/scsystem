@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using SCCL.Domain.Abstract;
+using SCCL.Core.Interfaces;
 using SCCL.Web.ViewModels;
 
 namespace SCCL.Web.Controllers
@@ -13,8 +10,7 @@ namespace SCCL.Web.Controllers
         private readonly ISolutionRepository _solutionrepository;
         private readonly IServiceRepository _servicerepository;
         private readonly ITestimonialRepository _testimonialrepository;
-        private SolutionServiceViewModel solutionservices;
-        private SiteAdminViewModel siteAdminViewModel;
+        private SiteAdminViewModel _siteAdminViewModel;
 
         public SiteAdminController(ISolutionRepository solutionRepository, IServiceRepository serviceRepository,
             ITestimonialRepository testimonialRepository)
@@ -25,22 +21,25 @@ namespace SCCL.Web.Controllers
         }
 
         // GET: SiteAdmin
+        [Authorize]
         public ActionResult Index()
         {
-            //solutionservices = new SolutionServiceViewModel
-            //{
-            //    Solutions = _solutionrepository.Solutions,
-            //    Services = _servicerepository.Services
-            //};
-
-            siteAdminViewModel = new SiteAdminViewModel
+            try
             {
-                Solutions = _solutionrepository.Solutions,
-                Services = _servicerepository.Services,
-                Testimonials = _testimonialrepository.Testimonials
-            };
+                _siteAdminViewModel = new SiteAdminViewModel
+                    {
+                        Solutions = _solutionrepository.Solutions,
+                        Services = _servicerepository.Services,
+                        Testimonials = _testimonialrepository.Testimonials
+                    };
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("Model", "Catastrophic Error");
+                throw;
+            }
 
-            return View(siteAdminViewModel);
+            return View(_siteAdminViewModel);
         }
 
 

@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Moq;
 using Ninject;
-using SCCL.Domain.Abstract;
-using SCCL.Domain.Concrete;
+using SCCL.Core.Interfaces;
+using SCCL.Infrastructure;
 
 namespace SCCL.Web.Infrastructure
 {
@@ -54,9 +51,9 @@ namespace SCCL.Web.Infrastructure
             //});
             //_kernel.Bind<IServiceRepository>().ToConstant(servicemock.Object);
 
-            _kernel.Bind<ISolutionRepository>().To<SCSYSRepository>();
-            _kernel.Bind<IServiceRepository>().To<SCSYSRepository>();
-            _kernel.Bind<ITestimonialRepository>().To<SCSYSRepository>();
+            _kernel.Bind<ISolutionRepository>().To<SolutionRepository>();
+            _kernel.Bind<IServiceRepository>().To<ServiceRepository>();
+            _kernel.Bind<ITestimonialRepository>().To<TestimonialRepository>();
         }
     }
 }

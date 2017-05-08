@@ -2,51 +2,54 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using SCCL.Domain.Entities;
+using System.Linq;
+using SCCL.Core.Entities;
+using SCCL.Core.Interfaces;
 
-namespace SCCL.Domain.DataAccess
+namespace SCCL.Infrastructure
 {
-    public class ServicesAccessor
+    public class ServiceRepository : IServiceRepository
     {
-        public static List<Service> RetrieveServices()
+        public IEnumerable<Service> Services
         {
-            var services = new List<Service>();
-            var conn = DbConnection.GetConnection();
-            const string cmdText = @"sp_retrieve_services";
-
-            using (var cmd = new SqlCommand(cmdText, conn) { CommandType = CommandType.StoredProcedure })
+            get
             {
-                try
-                {
-                    conn.Open();
-                    var reader = cmd.ExecuteReader();
-                    if (reader.HasRows)
-                        while (reader.Read())
-                        {
-                            var service = new Service
-                            {
-                                Id = reader.GetInt32(0),
-                                Name = reader.GetString(1),
-                                Description = reader.GetString(2),
-                                ImageMimeType = reader.IsDBNull(3) ? null : reader.GetString(3),
-                                ImageData = reader.IsDBNull(4) ? null : reader["ImageData"] as byte[]
-                            };
-                            services.Add(service);
-                        }
-                }
-                catch (Exception ex)
-                {
-                    throw;
-                }
-            }
+                var services = new List<Service>();
+                var conn = DbConnection.GetConnection();
+                const string cmdText = @"sp_retrieve_services";
 
-            return services;
+                using (var cmd = new SqlCommand(cmdText, conn) {CommandType = CommandType.StoredProcedure})
+                {
+                    try
+                    {
+                        conn.Open();
+                        var reader = cmd.ExecuteReader();
+                        if (reader.HasRows)
+                            while (reader.Read())
+                            {
+                                var service = new Service
+                                {
+                                    Id = reader.GetInt32(0),
+                                    Name = reader.GetString(1),
+                                    Description = reader.GetString(2),
+                                    ImageMimeType = reader.IsDBNull(3) ? null : reader.GetString(3),
+                                    ImageData = reader.IsDBNull(4) ? null : reader["ImageData"] as byte[]
+                                };
+                                services.Add(service);
+                            }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw;
+                    }
+                }
+
+                return services;
+            }
         }
 
-        public static bool CreateService(Service service)
+        public void Add(Service service)
         {
-            var rowsAffected = 0;
-
             var conn = DbConnection.GetConnection();
             const string cmdText = @"sp_create_service";
 
@@ -72,7 +75,10 @@ namespace SCCL.Domain.DataAccess
                 try
                 {
                     conn.Open();
-                    rowsAffected = cmd.ExecuteNonQuery();
+                    var rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected != 1)
+                        throw new ApplicationException(DbError.UpdateFailed.ToString());
                 }
                 catch (Exception)
                 {
@@ -80,15 +86,17 @@ namespace SCCL.Domain.DataAccess
                 }
             }
 
-            return rowsAffected == 1;
         }
 
-        public static bool UpdateService(Service oldService, Service newService)
+        public void Edit(Service newService)
         {
-            var rowsAffected = 0;
+            var oldService = Services.FirstOrDefault(x => x.Id == newService.Id);
+
+            if (oldService == null)
+                throw new ApplicationException(DbError.ConcurrencyError.ToString());
 
             var conn = DbConnection.GetConnection();
-            var cmdText = @"sp_update_service";
+            const string cmdText = @"sp_update_service";
 
             using (var cmd = new SqlCommand(cmdText, conn) { CommandType = CommandType.StoredProcedure })
             {
@@ -117,40 +125,44 @@ namespace SCCL.Domain.DataAccess
                 try
                 {
                     conn.Open();
-                    rowsAffected = cmd.ExecuteNonQuery();
+                    var rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected != 1)
+                        throw new ApplicationException(DbError.UpdateFailed.ToString());
                 }
                 catch (Exception)
                 {
                     throw;
                 }
             }
-
-            return rowsAffected == 1;
-
         }
 
-        public static bool DeleteService(int id)
+        public Service FindById(int serviceId)
         {
-            var rowsAffected = 0;
+            return Services.FirstOrDefault(x => x.Id == serviceId);
+        }
 
+        public void Remove(int serviceId)
+        {
             var conn = DbConnection.GetConnection();
             const string cmdText = @"sp_delete_service";
 
             using (var cmd = new SqlCommand(cmdText, conn) { CommandType = CommandType.StoredProcedure })
             {
-                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.Parameters.AddWithValue("@Id", serviceId);
 
                 try
                 {
                     conn.Open();
-                    rowsAffected = cmd.ExecuteNonQuery();
+                    var rowsAffected = cmd.ExecuteNonQuery();
+                    if ( rowsAffected != 1 )
+                        throw new ApplicationException(DbError.DeleteFailed.ToString());
                 }
                 catch (Exception)
                 {
                     throw;
                 }
             }
-            return rowsAffected == 1;
         }
     }
 }

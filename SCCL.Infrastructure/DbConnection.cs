@@ -1,6 +1,6 @@
 ﻿using System.Data.SqlClient;
 
-namespace SCCL.Domain.DataAccess
+namespace SCCL.Infrastructure
 {
     internal class DbConnection
     {

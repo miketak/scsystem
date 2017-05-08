@@ -109,9 +109,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SCCL.Domain\SCCL.Domain.csproj">
-      <Project>{281de029-41e1-4a4d-adcf-3f810a46d849}</Project>
-      <Name>SCCL.Domain</Name>
+    <ProjectReference Include="..\SCCL.Core\SCCL.Core.csproj">
+      <Project>{fb31687e-312f-4206-b2e9-32563a161618}</Project>
+      <Name>SCCL.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SCCL.Infrastructure\SCCL.Infrastructure.csproj">
+      <Project>{13c044e9-bd7b-4228-86e7-2c132c554c19}</Project>
+      <Name>SCCL.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\SCCL.Web\SCCL.Web.csproj">
       <Project>{73f31790-54a0-44d2-ae8c-2363b95fc257}</Project>

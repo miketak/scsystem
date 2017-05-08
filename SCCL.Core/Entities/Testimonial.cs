@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SCCL.Domain.Entities
+namespace SCCL.Core.Entities
 {
     public class Testimonial
     {
@@ -15,7 +15,5 @@ namespace SCCL.Domain.Entities
         public string Message { get; set; }
 
         public string Author { get; set; }
-
- 
     }
 }

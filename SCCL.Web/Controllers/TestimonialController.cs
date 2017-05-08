@@ -1,19 +1,16 @@
-﻿using SCCL.Domain.Abstract;
-using SCCL.Domain.Entities;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Diagnostics;
 using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using SCCL.Domain.DataAccess;
+using SCCL.Core.Entities;
+using SCCL.Core.Interfaces;
+using SCCL.Infrastructure;
 
 namespace SCCL.Web.Controllers
 {
     public class TestimonialController : Controller
     {
-        private ITestimonialRepository _repository;
+        private readonly ITestimonialRepository _repository;
 
 
         public TestimonialController(ITestimonialRepository testimonialRepository)
@@ -33,7 +30,7 @@ namespace SCCL.Web.Controllers
 
             try
             {
-                testimonial = _repository.Testimonials.FirstOrDefault(t => t.Id == id);
+                testimonial = _repository.FindById(id);
             }
             catch( Exception ex)
             {
@@ -55,14 +52,14 @@ namespace SCCL.Web.Controllers
 
             try
             {
-                _repository.Testimonial = newTestimonial;
+                _repository.Edit(newTestimonial);
                 return RedirectToAction("Index", "SiteAdmin", new {area = ""});
             }
             catch (ApplicationException ex)
             {
-                if (ex.Message == DBStatus.UpdateFailed.ToString())
+                if (ex.Message == DbError.UpdateFailed.ToString())
                     return RedirectToAction("Edit");
-                if (ex.Message == DBStatus.NoLongerExists.ToString())
+                if (ex.Message == DbError.ConcurrencyError.ToString())
                     return RedirectToAction("Index", "SiteAdmin");
             }
             catch (Exception ex)
@@ -77,8 +74,7 @@ namespace SCCL.Web.Controllers
         {
             try
             {
-               if ( _repository.DeteteTestimonial(id) )
-                   return RedirectToAction("Index", "SiteAdmin", new { area = "" });
+               _repository.Remove(id);
             }
             catch (Exception ex)
             {
@@ -98,12 +94,12 @@ namespace SCCL.Web.Controllers
 
             try
             {
-                if ( _repository.CreateTestimonial( testimonial ))
-                    return RedirectToAction("Index", "SiteAdmin");
+                _repository.Add(testimonial);
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
+                return RedirectToAction("Index", "SiteAdmin");
             }
 
 
@@ -114,22 +110,6 @@ namespace SCCL.Web.Controllers
         {
             return View(new Testimonial());
         }
-
-
-
-
-
-        //public ActionResult Edit(int id)
-        //{
-        //    solutionservices = new SolutionServiceViewModel { Solutions = _repository.Solutions };
-
-        //    var solution = _repository.Solutions.FirstOrDefault(p => p.Id == id);
-
-        //    return View("Edit", solution);
-        //}
-
-
-
 
     }
 }

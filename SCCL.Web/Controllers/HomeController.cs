@@ -1,16 +1,12 @@
-﻿using SCCL.Domain.Abstract;
-using SCCL.Web.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using SCCL.Web.ViewModels;
 using System.Web.Mvc;
+using SCCL.Core.Interfaces;
 
 namespace SCCL.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private ITestimonialRepository _repository;
+        private readonly ITestimonialRepository _repository;
 
         public HomeController(ITestimonialRepository testimonialRespository)
         {
@@ -20,10 +16,9 @@ namespace SCCL.Web.Controllers
 
         public ActionResult Index()
         {
-            var homeViewModel = new HomeViewModel();
+            var homeViewModel = new HomeViewModel {Testimonials = _repository.Testimonials};
 
-            homeViewModel.Testimonials = _repository.Testimonials;
-            
+
             return View(homeViewModel);
         }
 
