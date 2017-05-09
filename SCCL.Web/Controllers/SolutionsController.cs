@@ -26,7 +26,10 @@ namespace SCCL.Web.Controllers
             _solutionservices = new SolutionServiceViewModel { Solutions = _repository.Solutions };
             ViewBag.NavTitle = "Solutions";
 
-            var solution = _repository.FindById(1);
+            Solution solution = new Solution();
+            if ( _repository.Solutions.Any())
+                solution = _repository.Solutions.ToList()[0] ?? new Solution();
+
             _solutionservices.Solution = solution;
 
             return View(_solutionservices);

@@ -26,7 +26,13 @@ namespace SCCL.Web.Controllers
             var solutionservices = new SolutionServiceViewModel { Services = _repository.Services };
             ViewBag.NavTitle = "Services";
 
-            var service = _repository.Services.FirstOrDefault(p => p.Id == 1);
+            Service service = new Service();
+            if (_repository.Services.Any())
+            {
+                service = _repository.Services.ToList()[0] ?? new Service();
+            }
+                
+      
             solutionservices.Service = service;
 
             return View("../Solutions/Index", solutionservices);
@@ -37,7 +43,7 @@ namespace SCCL.Web.Controllers
             var solutionservices = new SolutionServiceViewModel { Services = _repository.Services };
             ViewBag.NavTitle = "Services";
 
-            var service = _repository.Services.FirstOrDefault(p => p.Id == id);
+            var service = _repository.FindById(id);
             solutionservices.Service = service;
 
             return View("../Solutions/Index", solutionservices);
@@ -110,7 +116,7 @@ namespace SCCL.Web.Controllers
         {
             _solutionServices = new SolutionServiceViewModel { Services = _repository.Services };
 
-            var service = _repository.Services.FirstOrDefault(p => p.Id == id);
+            var service = _repository.FindById(id);
 
             return View("Edit", service);
         }
