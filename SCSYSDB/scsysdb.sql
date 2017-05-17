@@ -54,6 +54,19 @@ Create table Solutions_Services
 	[ServicesID]	INT
 )
 
+print 'Created Contact Us Details Table'
+GO
+CREATE TABLE ContactMessages
+(
+	[Id]				INT NOT NULL PRIMARY KEY IDENTITY,
+	[Name]				NVARCHAR(256) NOT NULL,
+	[Email]				NVARCHAR(256) NOT NULL,
+	[Subject]			NVARCHAR(256) NOT NULL,
+	[MessageBody]		NVARCHAR(1024) NOT NULL,	
+	[TimePosted]		DATE NOT NULL
+)
+GO
+
 print '' print '*** Creating Foreign Key Solutions_Services SolutionsID'
 GO
 ALTER TABLE [dbo].[Solutions_Services] with nocheck
@@ -323,3 +336,122 @@ AS
 		RETURN @@ROWCOUNT
 	END
 GO
+
+--Contact Messages Stored Procedures
+
+print 'Creating sp_ContactMessagesSelect_By_Id'
+IF OBJECT_ID('[dbo].[sp_ContactMessagesSelect_By_Id]') IS NOT NULL
+BEGIN 
+    DROP PROC [dbo].[sp_ContactMessagesSelect_By_Id] 
+END 
+GO
+CREATE PROC [dbo].[sp_ContactMessagesSelect_By_Id] 
+    @Id int
+AS 
+	SET NOCOUNT ON 
+	SET XACT_ABORT ON  
+
+	BEGIN
+
+	SELECT [Id], [Name], [Email], [Subject], [MessageBody], [TimePosted] 
+	FROM   [dbo].[ContactMessages] 
+	WHERE  ([Id] = @Id OR @Id IS NULL)
+	
+	END
+GO
+
+print 'Creating sp_ContactMessagesSelect'
+IF OBJECT_ID('[dbo].[sp_ContactMessagesSelect]') IS NOT NULL
+BEGIN 
+    DROP PROC [dbo].[sp_ContactMessagesSelect] 
+END 
+GO
+CREATE PROC [dbo].[sp_ContactMessagesSelect] 
+AS 
+	SET NOCOUNT ON 
+	SET XACT_ABORT ON  
+
+	BEGIN
+
+	SELECT [Id], [Name], [Email], [Subject], [MessageBody], [TimePosted] 
+	FROM   [dbo].[ContactMessages]
+	
+	END
+GO
+
+print 'Creating sp_ContactMessagesInsert'
+IF OBJECT_ID('[dbo].[sp_ContactMessagesInsert]') IS NOT NULL
+BEGIN 
+    DROP PROC [dbo].[sp_ContactMessagesInsert] 
+END 
+GO
+CREATE PROC [dbo].[sp_ContactMessagesInsert] 
+    @Name nvarchar(256),
+    @Email nvarchar(256),
+    @Subject nvarchar(256),
+    @MessageBody nvarchar(1024),
+    @TimePosted date
+AS 
+	SET NOCOUNT ON 
+	SET XACT_ABORT ON  
+	
+	BEGIN 
+	
+	INSERT INTO [dbo].[ContactMessages] ([Name], [Email], [Subject], [MessageBody], [TimePosted])
+	SELECT @Name, @Email, @Subject, @MessageBody, @TimePosted
+	
+	RETURN @@ROWCOUNT
+	
+	END
+GO
+
+print 'Creating sp_ContactMessagesUpdate'
+IF OBJECT_ID('[dbo].[sp_ContactMessagesUpdate]') IS NOT NULL
+BEGIN 
+    DROP PROC [dbo].[sp_ContactMessagesUpdate] 
+END 
+GO
+CREATE PROC [dbo].[sp_ContactMessagesUpdate] 
+    @Id int,
+    @Name nvarchar(256),
+    @Email nvarchar(256),
+    @Subject nvarchar(256),
+    @MessageBody nvarchar(1024),
+    @TimePosted date
+AS 
+	SET NOCOUNT ON 
+	SET XACT_ABORT ON  
+	
+	BEGIN 
+
+	UPDATE [dbo].[ContactMessages]
+	SET    [Name] = @Name, [Email] = @Email, [Subject] = @Subject, [MessageBody] = @MessageBody, [TimePosted] = @TimePosted
+	WHERE  [Id] = @Id
+	
+	RETURN @@ROWCOUNT
+	END
+GO
+
+print 'Creating sp_ContactMessagesDelete'
+IF OBJECT_ID('[dbo].[sp_ContactMessagesDelete]') IS NOT NULL
+BEGIN 
+    DROP PROC [dbo].[sp_ContactMessagesDelete] 
+END 
+GO
+CREATE PROC [dbo].[sp_ContactMessagesDelete] 
+    @Id int
+AS 
+	SET NOCOUNT ON 
+	SET XACT_ABORT ON  
+	
+	BEGIN
+
+	DELETE
+	FROM   [dbo].[ContactMessages]
+	WHERE  [Id] = @Id
+	
+	END
+GO
+----------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
+

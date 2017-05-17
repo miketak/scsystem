@@ -40,9 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\ContactMessage.cs" />
     <Compile Include="Entities\Service.cs" />
     <Compile Include="Entities\Solution.cs" />
     <Compile Include="Entities\Testimonial.cs" />
+    <Compile Include="Interfaces\IContactMessageRepository.cs" />
     <Compile Include="Interfaces\IServiceRepository.cs" />
     <Compile Include="Interfaces\ISolutionRepository.cs" />
     <Compile Include="Interfaces\ITestimonialRepository.cs" />
