@@ -18,7 +18,6 @@ namespace SCCL.Web.Controllers
         {
             var homeViewModel = new HomeViewModel {Testimonials = _repository.Testimonials};
 
-
             return View(homeViewModel);
         }
 
@@ -27,9 +26,9 @@ namespace SCCL.Web.Controllers
             return View("AboutUs");
         }
 
-        public ViewResult ContactUs()
-        {
-            return View("ContactUs");
-        }
+        //public ViewResult ContactUs()
+        //{
+        //    return View("ContactUs");
+        //}
     }
 }
