@@ -392,7 +392,7 @@ CREATE PROC [dbo].[sp_ContactMessagesInsert]
     @MessageBody nvarchar(1024),
     @TimePosted date
 AS 
-	SET NOCOUNT ON 
+	SET NOCOUNT OFF 
 	SET XACT_ABORT ON  
 	
 	BEGIN 

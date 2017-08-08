@@ -70,7 +70,7 @@
                         <a target="_blank" href="m" class="hover-color">Corporate Email</a>
                     </li>
                     <li>
-                        @Html.ActionLink("Admin Login", "Index", "Admin", null, new { @class = "hover-color" })
+                        @Html.ActionLink("Admin Login", "Index", "Admin", null, new {@class = "hover-color"})
                     </li>
                     <li>
                         <a href="" class="hover-color">SCOTEG</a>
@@ -85,20 +85,26 @@
         <div class="col-md-5">
             <div class="footer-col">
                 <h3>Get in touch</h3>
-                <form action="" name="footerform" id="contactForm" method="post">
+                <form action="#" name="footerform" id="contactForm" method="" novalidate>
                     <div class="row">
                         <div class="col-md-6">
-                            <input type="text" name="name" class="form-control" placeholder="Name..." required data-validation-required-message="Please enter your name.">
+                            <input type="text" name="name" id="name" class="form-control" placeholder="Name..." required data-validation-required-message="Please enter your name.">
                         </div>
                         <div class="col-md-6">
-                            <input type="email" name="email" class="form-control" placeholder="Email..." required data-validation-required-message="Please enter your email.">
+                            <input type="text" name="email" id="email" class="form-control" placeholder="Email..." required data-validation-required-message="Please enter your email.">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject..." required data-validation-required-message="Help us with a subject line.">
                         </div>
                         <div class="col-md-12">
-                            <input type="text" name="subject" class="form-control" placeholder="Subject..." required data-validation-required-message="Help us with a subject line.">
+                            <textarea class="form-control" name="message" id="message" placeholder="Message..." rows="7" required data-validation-required-message="Please enter your message."></textarea>
                         </div>
-                        <div class="col-md-12">
-                            <textarea class="form-control" name="message" placeholder="Message..." rows="7" required data-validation-required-message="Please enter your message."></textarea>
-                        </div>
+                    </div>
+                    <br>
+                    <div id="success"></div>
+                    <div class=" row">
                         <div class="col-md-12 text-right">
                             <button type="submit" class="btn btn-lg btn-white">Send message</button>
                         </div>

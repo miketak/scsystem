@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewBag.Title - STABLE CORPS</title>
     <link rel="icon" href="@Url.Content("~/content/Icons/favicon.ico")" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
@@ -43,7 +43,14 @@
     <script src="~/Scripts/parallax.min.js"></script>
     <script src="~/Scripts/wow.min.js"></script>
     <script src="~/Scripts/app.js"></script>
-    @*End of Scripts*@
+    <script src="~/Scripts/contact_me.js"></script>
+    <script>
+        var ContactUrlSettings = {
+            contactUrl: '@Url.Action("Create", "Contact")'
+        }
+    </script>
+    @RenderSection("scripts", required: false)
+@*End of Scripts*@
 
 </body>
 </html>

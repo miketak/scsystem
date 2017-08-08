@@ -34,7 +34,7 @@ namespace SCCL.Infrastructure
                                     Name = reader.GetString(1),
                                     Email = reader.GetString(2),
                                     Subject = reader.GetString(3),
-                                    MessageBody = reader.GetString(4),
+                                    Message = reader.GetString(4),
                                     DatePosted = reader.GetDateTime(5)
                                 };
                                 contactMessages.Add(contactMessage);
@@ -61,8 +61,8 @@ namespace SCCL.Infrastructure
                 cmd.Parameters.AddWithValue("@Name", contactMessage.Name);
                 cmd.Parameters.AddWithValue("@Email", contactMessage.Email);
                 cmd.Parameters.AddWithValue("@Subject", contactMessage.Subject);
-                cmd.Parameters.AddWithValue("@MessageBody", contactMessage.MessageBody);
-                cmd.Parameters.AddWithValue("@TimePosted", contactMessage.DatePosted);
+                cmd.Parameters.AddWithValue("@MessageBody", contactMessage.Message);
+                cmd.Parameters.AddWithValue("@TimePosted", DateTime.Now); 
 
                 try
                 {
@@ -94,7 +94,7 @@ namespace SCCL.Infrastructure
                 cmd.Parameters.AddWithValue("@Name", newContactMessage.Name);
                 cmd.Parameters.AddWithValue("@Email", newContactMessage.Email);
                 cmd.Parameters.AddWithValue("@Subject", newContactMessage.Subject);
-                cmd.Parameters.AddWithValue("@MessageBody", newContactMessage.MessageBody);
+                cmd.Parameters.AddWithValue("@MessageBody", newContactMessage.Message);
                 cmd.Parameters.AddWithValue("@TimePosted", newContactMessage.DatePosted);
 
                 try
@@ -154,7 +154,7 @@ namespace SCCL.Infrastructure
                             Name = reader.GetString(1),
                             Email = reader.GetString(2),
                             Subject = reader.GetString(3),
-                            MessageBody = reader.GetString(4),
+                            Message = reader.GetString(4),
                             DatePosted = reader.GetDateTime(5)
                         };  
                     }
