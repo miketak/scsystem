@@ -34,7 +34,8 @@ namespace SCCL.Infrastructure
                                     Name = reader.GetString(1),
                                     Description = reader.GetString(2),
                                     ImageMimeType = reader.IsDBNull(3) ? null : reader.GetString(3),
-                                    ImageData = reader.IsDBNull(4) ? null : reader["ImageData"] as byte[]
+                                    ImageData = reader.IsDBNull(4) ? null : reader["ImageData"] as byte[],
+                                    UrlString = reader.GetString(5)
                                 };
                                 services.Add(service);
                             }
@@ -58,6 +59,7 @@ namespace SCCL.Infrastructure
             {
                 cmd.Parameters.AddWithValue("@Name", service.Name);
                 cmd.Parameters.AddWithValue("@Description", service.Description);
+                cmd.Parameters.AddWithValue("@UrlString", service.UrlString);
 
                 if (service.ImageData == null)
                 {
@@ -108,6 +110,7 @@ namespace SCCL.Infrastructure
 
                 cmd.Parameters.AddWithValue("@NewName", newService.Name);
                 cmd.Parameters.AddWithValue("@NewDescription", newService.Description);
+                cmd.Parameters.AddWithValue("@UrlString", newService.UrlString);
 
                 if (newService.ImageData == null)
                 {
@@ -138,10 +141,16 @@ namespace SCCL.Infrastructure
             }
         }
 
-        public Service FindById(int serviceId)
+        public Service FindById(int id)
         {
-            return Services.FirstOrDefault(x => x.Id == serviceId);
+            return Services.FirstOrDefault(x => x.Id == id);
         }
+
+        public Service FindByUrl(string urlString)
+        {
+            return Services.FirstOrDefault(x => x.UrlString == urlString);
+        }
+
 
         public void Remove(int serviceId)
         {

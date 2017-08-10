@@ -33,7 +33,8 @@ namespace SCCL.Infrastructure
                                     Name = reader.GetString(1),
                                     Description = reader.GetString(2),
                                     ImageMimeType = reader.IsDBNull(3) ? null : reader.GetString(3),
-                                    ImageData = reader.IsDBNull(4) ? null : reader["ImageData"] as byte[]
+                                    ImageData = reader.IsDBNull(4) ? null : reader["ImageData"] as byte[],
+                                    UrlString = reader.GetString(5)
                                 };
                                 solutions.Add(solution);
                             }
@@ -57,6 +58,7 @@ namespace SCCL.Infrastructure
             {
                 cmd.Parameters.AddWithValue("@Name", solution.Name);
                 cmd.Parameters.AddWithValue("@Description", solution.Description);
+                cmd.Parameters.AddWithValue("@UrlString", solution.UrlString);
 
                 if (solution.ImageData == null)
                 {
@@ -105,6 +107,7 @@ namespace SCCL.Infrastructure
 
                 cmd.Parameters.AddWithValue("@NewName", newSolution.Name);
                 cmd.Parameters.AddWithValue("@NewDescription", newSolution.Description);
+                cmd.Parameters.AddWithValue("@UrlString", newSolution.UrlString);
 
                 if (newSolution.ImageData == null)
                 {
@@ -134,9 +137,14 @@ namespace SCCL.Infrastructure
             }
         }
 
-        public Solution FindById(int solutionId)
+        public Solution FindById(int id)
         {
-            return Solutions.FirstOrDefault(s => s.Id == solutionId);
+            return Solutions.FirstOrDefault(s => s.Id == id);
+        }
+
+        public Solution FindByUrl(string urlString)
+        {
+            return Solutions.FirstOrDefault(x => x.UrlString == urlString);
         }
 
         public void Remove(int solutionId)

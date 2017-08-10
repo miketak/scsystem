@@ -25,14 +25,22 @@ namespace SCCL.Core.Interfaces
         /// <summary>
         /// Updates service in persistent storage
         /// </summary>
-        /// <param name="newService"></param>
+        /// <param name="newSolution"></param>
         void Edit(Solution newSolution);
 
         /// <summary>
         /// Finds a service by service id
         /// </summary>
-        /// <param name="serviceId">Service ID</param>
+        /// <param name="id">ID</param>
         /// <returns></returns>
-        Solution FindById(int solutionId);
+        Solution FindById(int id);
+
+
+        /// <summary>
+        /// Finds a service by a url string
+        /// </summary>
+        /// <param name="urlString"></param>
+        /// <returns></returns>
+        Solution FindByUrl(string urlString);
     }
 }

@@ -29,11 +29,18 @@ namespace SCCL.Core.Interfaces
         void Remove(int serviceId);
 
         /// <summary>
-        /// Finds a service by service id
+        /// Finds a service by url string
         /// </summary>
-        /// <param name="serviceId">Service ID</param>
+        /// <param name="id">Url String</param>
         /// <returns></returns>
-        Service FindById(int serviceId);
+        Service FindById(int id);
+
+        /// <summary>
+        /// Finds a service by a url string
+        /// </summary>
+        /// <param name="urlString"></param>
+        /// <returns></returns>
+        Service FindByUrl(string urlString);
 
     }
 }
