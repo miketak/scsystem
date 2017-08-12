@@ -4,6 +4,11 @@
     ViewBag.Title = ViewBag.NavTitle;
 }
 
+@section metatags{
+    <meta name="description" content="Browse our rich content of Solutions and Services to help make the world a better place.">
+    <meta name="keywords" content="renewable-energy, industry, finite element analysis, multibody dynamics, mathematical modelling, chemical process design">
+}
+
 <!--Title Strip-->
 <section id="content-region-3" class="page-tree-bg">
     <div class="container">
@@ -29,7 +34,7 @@
             <!--Button Link-->
             <br/>
             <p align="center">
-                @Html.ActionLink("Contact Us", "ContactUs", "Home", null, new {@class = "btn btn-lg theme-btn-color"})
+                @Html.ActionLink("Contact Us", "Index", "Contact", null, new {@class = "btn btn-lg theme-btn-color"})
             </p>
             <!---->
         </div>
@@ -38,6 +43,3 @@
 </div>
 
 <div class="space-70"></div>
-
-
-

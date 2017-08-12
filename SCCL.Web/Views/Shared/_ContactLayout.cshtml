@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>STABLE CORPS - @ViewBag.Title</title>
+    @RenderSection("metatags", false)
+    <link rel="icon" href="@Url.Content("~/content/Icons/favicon.ico")" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/ionicons.css" rel="stylesheet" />
+    <link href="~/Content/SCSite.css" rel="stylesheet" />
+    <!--google  font family-->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,900' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400italic' rel='stylesheet' type='text/css'>
+    <link href="~/Content/flexslider.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet" />
+</head>
+<body>
+<!--Navigation-->
+<div class="navbar navbar-fixed-top navbar-default sticky-nav sticky" role="navigation">
+    @Html.Partial("_MainNav")
+</div>
+<!--navigation end-->
+<!--Main Render Body-->
+@RenderBody()
+<!--End of Render Body-->
+<!--Footer-->
+<footer id="footer">
+    @Html.Partial("_ContactFooter")
+</footer>
+<!--End of Footer-->
+@*Scripts*@
+<script src="~/Scripts/jquery-1.9.1.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Scripts/bootstrap-hover-dropdown.min.js"></script>
+<script src="~/Scripts/modernizr-2.6.2.js"></script>
+<script src="~/Scripts/jquery.flexslider-min.js"></script>
+<script src="~/Scripts/jqBootstrapValidation.js"></script>
+<script src="~/Scripts/jquery.easing.1.3.min.js"></script>
+<script src="~/Scripts/jquery.placeholder.min.js"></script>
+<script src="~/Scripts/jquery.mixitup.min.js"></script>
+<script src="~/Scripts/jquery.sticky.js"></script>
+<script src="~/Scripts/parallax.min.js"></script>
+<script src="~/Scripts/wow.min.js"></script>
+<script src="~/Scripts/app.js"></script>
+<script src="~/Scripts/contact_me.js"></script>
+<script>
+    var ContactUrlSettings = {
+        contactUrl: '@Url.Action("Create", "Contact")'
+    }
+</script>
+@RenderSection("scripts", required: false)
+@*End of Scripts*@
+
+</body>
+</html>

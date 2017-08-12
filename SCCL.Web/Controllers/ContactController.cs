@@ -23,8 +23,6 @@ namespace SCCL.Web.Controllers
         // GET: Contact
         public ActionResult Index()
         {
-            if (TempData["successMessage"] != null)
-                ViewBag.Message = TempData["successMessage"].ToString();
             return View();
         }
 
@@ -37,7 +35,6 @@ namespace SCCL.Web.Controllers
             try
             {
                 _repository.Add(contactMessage);
-                TempData["successMessage"] = "Your message has been recorded successfully";
             }
             catch (Exception ex)
             {
