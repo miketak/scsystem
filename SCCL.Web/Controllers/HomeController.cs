@@ -21,6 +21,7 @@ namespace SCCL.Web.Controllers
             return View(homeViewModel);
         }
 
+        [Route("about")]
         public ViewResult AboutUs()
         {
             return View("AboutUs");

@@ -81,8 +81,7 @@
             <div class="services-box">
                 <i class="ion-earth"></i>
                 <h1>
-                    @*@Html.ActionLink("Renewable Energy", "Index", "Services", null, new { @class = "btn btn-white btn-lg" })*@
-                    <a href="">Renewable Energy</a>
+                    @Html.ActionLink("Renewable Energy", "DetailByUrlString", "Solutions", new { urlString = "renewable-energy" }, null)
                 </h1>
                 <p>
                     Renewable energy is the next generation of power supply for a sustainable future.
@@ -97,7 +96,7 @@
             <div class="services-box">
                 <i class="ion-wrench"></i>
                 <h1>
-                    <a href="">Manufacturing Tech and Design</a>
+                    @Html.ActionLink("Industry", "DetailByUrlString", "Solutions", new { urlString = "industry" }, null)
                 </h1>
                 <p>
                     A thriving economy requires cutting edge innovation to power it.
@@ -110,12 +109,12 @@
 
         <div class="col-sm-4">
             <div class="services-box">
-                <i class="ion-medkit"></i>
+                <i class="ion-medkit"></i>    @*Change this link*@
                 <h1>
-                    <a href="">Healthcare</a>
+                    @Html.ActionLink("Research & Development", "DetailByUrlString", "Solutions", new { urlString = "research-and-development" }, null)
                 </h1>
                 <p>
-                    An assured high quality of life is through a working health system
+                    World Class Research at your doorstep.
                 </p>
                 <p align="center">
                     Read More ...
@@ -129,7 +128,7 @@
             <div class="services-box">
                 <i class="ion-gear-a"></i>
                 <h1>
-                    <a href="">Agriculture</a>
+                    @Html.ActionLink("Agriculture", "DetailByUrlString", "Solutions", new { urlString = "agriculture" }, null)
                 </h1>
                 <p>
                     Food security is stimulated through innovative technologies and solutions.
@@ -144,7 +143,7 @@
             <div class="services-box">
                 <i class="ion-beaker"></i>
                 <h1>
-                    <a href="">Chemical Process Design</a>
+                    @Html.ActionLink("Chemical Process Design", "DetailByUrlString", "Solutions", new { urlString = "chemical-process-design" }, null)
                 </h1>
                 <p>
                     Automation is the baseline of higher efficiency in plant operation. Increase productivity.
@@ -155,7 +154,7 @@
             </div>
         </div><!--services box 5-->
 
-        <div class="col-sm-4">
+        @*<div class="col-sm-4">
             <div class="services-box">
                 <i class="ion-person"></i>
                 <h1>
@@ -168,7 +167,7 @@
                     Read More ...
                 </p>
             </div>
-        </div><!--services box-->
+        </div>*@<!--services box-->
     </div><!--row end-->
 </div><!--intro with services end-->
 @*End of Ionicons Section*@

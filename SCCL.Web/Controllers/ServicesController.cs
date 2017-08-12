@@ -49,6 +49,22 @@ namespace SCCL.Web.Controllers
             return View("../Solutions/Index", solutionservices);
         }
 
+
+        /// <summary>
+        /// Controller to Query Services by custom routing
+        /// </summary>
+        /// <param name="urlString"></param>
+        /// <returns></returns>
+        [Route("services/{urlString}")]
+        public ViewResult DetailByUrlString(string urlString)
+        {
+            _solutionServices = new SolutionServiceViewModel { Service = _repository.FindByUrl(urlString), Services = _repository.Services };
+
+            ViewBag.NavTitle = "Services";
+
+            return View("../Solutions/Index", _solutionServices);
+        }
+
         // Admin Functionality
 
         [Authorize]
