@@ -207,6 +207,7 @@
     <Compile Include="ViewModels\SolutionServiceViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="404.html" />
     <Content Include="Content\adminoverride.css" />
     <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -319,7 +320,6 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Testimonial\Edit.cshtml" />
     <Content Include="Views\Testimonial\Create.cshtml" />
-    <Content Include="Views\Shared\PageNotFound.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Shared\_ContactLayout.cshtml" />
     <Content Include="Views\Shared\_ContactFooter.cshtml" />

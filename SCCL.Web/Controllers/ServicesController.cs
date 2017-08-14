@@ -62,6 +62,9 @@ namespace SCCL.Web.Controllers
 
             ViewBag.NavTitle = "Services";
 
+            if (_solutionServices.Service == null)
+                return View("Error");
+
             return View("../Solutions/Index", _solutionServices);
         }
 

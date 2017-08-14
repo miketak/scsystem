@@ -52,11 +52,14 @@ namespace SCCL.Web.Controllers
         /// <param name="urlString"></param>
         /// <returns></returns>
         [Route("solutions/{urlString}")]
-        public ViewResult DetailByUrlString(string urlString)
+        public ActionResult DetailByUrlString(string urlString)
         {
             _solutionservices = new SolutionServiceViewModel {Solution = _repository.FindByUrl(urlString), Solutions = _repository.Solutions};
 
             ViewBag.NavTitle = "Solutions";
+
+            if (_solutionservices.Solution == null)
+                return View("Error");
 
             return View("Index", _solutionservices);
         }
