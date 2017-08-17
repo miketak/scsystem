@@ -192,9 +192,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
-    <Compile Include="Migrations\201704242333286_First Migration.cs" />
-    <Compile Include="Migrations\201704242333286_First Migration.Designer.cs">
-      <DependentUpon>201704242333286_First Migration.cs</DependentUpon>
+    <Compile Include="Migrations\201704242333286_FirstMigration.cs" />
+    <Compile Include="Migrations\201704242333286_FirstMigration.Designer.cs">
+      <DependentUpon>201704242333286_FirstMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -241,6 +241,7 @@
     <Content Include="Content\ionicons.ttf" />
     <Content Include="Content\ionicons.woff" />
     <Content Include="Class Diagrams\Controllers.cd" />
+    <None Include="Properties\PublishProfiles\GodaddyProfile.pubxml" />
     <None Include="Properties\PublishProfiles\scclweb - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\contact_me.js" />
@@ -335,8 +336,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704242333286_First Migration.resx">
-      <DependentUpon>201704242333286_First Migration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704242333286_FirstMigration.resx">
+      <DependentUpon>201704242333286_FirstMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
