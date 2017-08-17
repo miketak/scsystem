@@ -24,21 +24,28 @@
                     <li><a target = "_blank" href="https://twitter.com/stablecorps"><i class="ion-social-twitter" data-toggle="tooltip" data-placement="top" title="" data-original-title="Follow On twitter"></i></a></li>
                     <li><a target = "_blank" href="https://plus.google.com/105370864366823037587/about"><i class="ion-social-googleplus" data-toggle="tooltip" data-placement="top" title="" data-original-title="Follow On googleplus"></i></a></li>
                     <li><a target = "_blank" href="https://www.pinterest.com/stablecorps"><i class="ion-social-pinterest" data-toggle="tooltip" data-placement="top" title="" data-original-title="pinterest"></i></a></li>
-                    <li><a href="#"><i class="ion-social-skype" data-toggle="tooltip" data-placement="top" title="" data-original-title="skype"></i></a></li>
-                </ul>
+                 </ul>
             </div><!--footer social col-->
         </div><!--col-4 end-->
         <div class="col-md-3 margin-btm-20">
             <div class="footer-col">
                 <h3>Quick Links</h3>
                 <ul class="post-list list-unstyled">
-                    <li><a href="login-student.php" class="hover-color">Student Portal</a></li>
-                    <li><a href="login-project.php" class="hover-color">Project Portal</a></li>
-                    <li><a href="login.php" class="hover-color">Employee Login</a></li>
-                    <li><a target = "_blank" href="http://email.stablecorps.com" class="hover-color">Corporate Email</a></li>
-                    <li><a href="login.php" class="hover-color">Admin Login</a></li>
-                    <li><a href="" class="hover-color">SCOTEG</a></li>
-                    <li><a href="" class="hover-color">Careers</a></li>
+                    <li>
+                        @Html.ActionLink("Student Portal", "Index", "Admin", null, new { @class = "hover-color" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Project Portal", "Index", "Admin", null, new { @class = "hover-color" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Employee Login", "Index", "Admin", null, new { @class = "hover-color" })
+                    </li>
+                    <li>
+                        <a target="_blank" href="http://mail.stablecorps.com" class="hover-color">Corporate Email</a>
+                    </li>
+                    <li>
+                        @Html.ActionLink("Admin Login", "Index", "Admin", null, new { @class = "hover-color" })
+                    </li>
                 </ul>
             </div>
         </div><!--latest post col end-->
