@@ -184,6 +184,7 @@
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PortfolioController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\SiteAdminController.cs" />
     <Compile Include="Controllers\SolutionsController.cs" />
@@ -224,6 +225,10 @@
     <Content Include="Content\Images\img-2.jpg" />
     <Content Include="Content\Images\img-3.jpg" />
     <Content Include="Content\Images\pattern.png" />
+    <Content Include="Content\Images\Publications\img-1.PNG" />
+    <Content Include="Content\Images\Publications\img-2.PNG" />
+    <Content Include="Content\Images\Publications\img-3.PNG" />
+    <Content Include="Content\Images\Publications\pub-1.jpg" />
     <Content Include="Content\Images\sclogo.png" />
     <Content Include="Content\Images\Services\img-1.jpg" />
     <Content Include="Content\ionicons.css" />
@@ -324,6 +329,8 @@
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Shared\_ContactLayout.cshtml" />
     <Content Include="Views\Shared\_ContactFooter.cshtml" />
+    <Content Include="Views\Portfolio\Index.cshtml" />
+    <Content Include="Views\Portfolio\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

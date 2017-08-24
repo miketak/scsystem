@@ -110,7 +110,7 @@ namespace SCCL.Infrastructure
 
                 cmd.Parameters.AddWithValue("@NewName", newService.Name);
                 cmd.Parameters.AddWithValue("@NewDescription", newService.Description);
-                cmd.Parameters.AddWithValue("@UrlString", newService.UrlString);
+                cmd.Parameters.AddWithValue("@NewUrlString", newService.UrlString);
 
                 if (newService.ImageData == null)
                 {

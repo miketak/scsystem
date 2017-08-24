@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="ContactMessageRepository.cs" />
     <Compile Include="DbError.cs" />
+    <Compile Include="PortfolioRepository.cs" />
     <Compile Include="ServiceRepository.cs" />
     <Compile Include="DbConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

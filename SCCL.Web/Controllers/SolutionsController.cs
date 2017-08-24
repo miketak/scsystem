@@ -66,6 +66,7 @@ namespace SCCL.Web.Controllers
 
 
         // Admin Functionality
+        [Route("solutions/create")]
         public ActionResult Create()
         {
             return View(new Solution());
@@ -73,7 +74,8 @@ namespace SCCL.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name, Description, ImageMimeType, ImageData")] Solution solution,
+        [Route("solutions/create")]
+        public ActionResult Create([Bind(Include = "Name, Description, ImageMimeType, ImageData, UrlString")] Solution solution,
             HttpPostedFileBase image = null)
         {
             if (!ModelState.IsValid) 
@@ -101,7 +103,8 @@ namespace SCCL.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Solution newSolution, HttpPostedFileBase image = null)
+        [Route("solutions/edit")]
+        public ActionResult Edit([Bind(Include = "Id, Name, Description, ImageMimeType, ImageData, UrlString")] Solution newSolution, HttpPostedFileBase image = null)
         {
             if (!ModelState.IsValid) 
                 return View(newSolution);
@@ -126,6 +129,7 @@ namespace SCCL.Web.Controllers
             return View(newSolution);
         }
 
+        [Route("solutions/edit")]
         public ActionResult Edit(int id)
         {
             _solutionservices = new SolutionServiceViewModel { Solutions = _repository.Solutions };
@@ -134,6 +138,7 @@ namespace SCCL.Web.Controllers
 
             return View("Edit", solution);
         }
+
 
         public ActionResult Delete(int id)
         {

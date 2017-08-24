@@ -107,7 +107,7 @@ namespace SCCL.Infrastructure
 
                 cmd.Parameters.AddWithValue("@NewName", newSolution.Name);
                 cmd.Parameters.AddWithValue("@NewDescription", newSolution.Description);
-                cmd.Parameters.AddWithValue("@UrlString", newSolution.UrlString);
+                cmd.Parameters.AddWithValue("@NewUrlString", newSolution.UrlString);
 
                 if (newSolution.ImageData == null)
                 {

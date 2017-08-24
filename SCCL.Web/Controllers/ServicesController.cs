@@ -71,6 +71,7 @@ namespace SCCL.Web.Controllers
         // Admin Functionality
 
         [Authorize]
+        [Route("services/create")]
         public ActionResult Create()
         {
             return View(new Service());
@@ -78,7 +79,8 @@ namespace SCCL.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name, Description")] Service service, HttpPostedFileBase image = null)
+        [Route("services/create")]
+        public ActionResult Create([Bind(Include = "Name, Description, ImageMimeType, ImageData, UrlString")] Service service, HttpPostedFileBase image = null)
         {
             if (!ModelState.IsValid) 
                 return RedirectToAction("Index", "SiteAdmin");
@@ -106,7 +108,8 @@ namespace SCCL.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Service newService, HttpPostedFileBase image = null) 
+        [Route("services/edit")]
+        public ActionResult Edit([Bind(Include = "Id, Name, Description, ImageMimeType, ImageData, UrlString")] Service newService, HttpPostedFileBase image = null) 
         {
             if (!ModelState.IsValid) 
                 return View(newService);
@@ -131,6 +134,7 @@ namespace SCCL.Web.Controllers
         }
 
         [Authorize]
+        [Route("services/edit")]
         public ActionResult Edit(int id)
         {
             _solutionServices = new SolutionServiceViewModel { Services = _repository.Services };
