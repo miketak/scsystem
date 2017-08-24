@@ -91,7 +91,7 @@ GO
 
 print 'Create Portfolio Images Table'
 GO
-CREATE TABLE PortfolioDetails
+CREATE TABLE PortfolioImages
 (
 	[Id]				INT NOT NULL PRIMARY KEY IDENTITY,
 	[PortfolioId]		INT,
@@ -451,9 +451,38 @@ AS
 	END
 GO
 
+--Portfolio Stored Procedures
+print '' print  ' *** creating procedure sp_retrieve_portfolio'
+GO
+Create PROCEDURE sp_retrieve_portfolio
+AS
+BEGIN
+SELECT Id, Title, ResearchArea, Author, Publisher, RedirectLink, PortfolioType, Summary, Thumbnail, ImageMimeType
+FROM Portfolio
+END
+GO
 
+print '' print  ' *** creating procedure sp_retrieve_portfolio_by_id'
+GO
+Create PROCEDURE sp_retrieve_portfolio_by_id
+	@Id int
+AS
+BEGIN
+SELECT Id, Title, ResearchArea, Author, Publisher, RedirectLink, PortfolioType, Summary, Thumbnail, ImageMimeType
+FROM Portfolio
+WHERE  ([Id] = @Id)
+END
+GO
 
+print '' print   ' *** Creating sp_portfolio_images_by_id'
+GO
+CREATE PROCEDURE [dbo].[sp_portfolio_images_by_id] 
+    @PortfolioId int
+AS 
+	BEGIN
 
-
-
-
+	SELECT [Id], [PortfolioId], [PortfolioImage], [ImageMimeType] 
+	FROM   [dbo].[PortfolioImages] 
+	WHERE  ([PortfolioId] = @PortfolioId)
+	END
+GO

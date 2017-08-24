@@ -10,6 +10,8 @@ namespace SCCL.Core.Entities
     {
         public int Id { get; set; }
 
+        public int PortfolioId { get; set; }
+
         public string Title { get; set; }
 
         public string Detail { get; set; }
@@ -23,6 +25,8 @@ namespace SCCL.Core.Entities
         public string LinkUrl { get; set; }
 
         public byte[] Thumbnail { get; set; }
+
+        public string ThumbnailMimeType { get; set; }
 
         public List<byte[]> DetailImages { get; set; }
         public string PortfolioType { get; set; }

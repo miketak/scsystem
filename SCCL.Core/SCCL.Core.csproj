@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Entities\ContactMessage.cs" />
     <Compile Include="Entities\Portfolio.cs" />
+    <Compile Include="Entities\PortfolioImages.cs" />
     <Compile Include="Entities\Service.cs" />
     <Compile Include="Entities\Solution.cs" />
     <Compile Include="Entities\Testimonial.cs" />

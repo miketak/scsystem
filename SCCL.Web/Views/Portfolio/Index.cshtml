@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<SCCL.Core.Entities.Portfolio>
+
+@{
     ViewBag.Title = "Our Works";
 }
 
@@ -26,26 +28,31 @@
         <div class="col-md-12">
             <ul class="portfolio-filters">
                 <li class="filter active" data-filter="all">all</li>
-                <li class="filter" data-filter="publications">Publications</li>
+                @foreach (var k in Model)
+                {
+                    <li class="filter" data-filter="@Html.DisplayName(k.PortfolioType.ToLower())">@Html.DisplayName(k.PortfolioType)</li>
+                }
+                
             </ul>
 
             <div id="grid" class="row">
                 
-                <div class=" mix publications col-md-4 col-sm-6 margin-btm-40">
-                    <div class="portfolio-sec">
-                        <div class="portfolio-thumnail">
-                            <a href="Porfolio/Detail">
-                                <img src="~/Content/Images/Publications/pub-1.jpg" />
-                            </a>
+                @foreach (var p in Model)
+                {
+                    <div class="mix @Html.DisplayName(p.PortfolioType.ToLower()) col-md-4 col-sm-6 margin-btm-40">
+                        <div class="portfolio-sec">
+                            <div class="portfolio-thumnail">
+                                    <img class="img-responsive" src="@Url.Action("GetImage", "Portfolio", new {p.Id})" alt="@p.Title"/>
+                            </div>
+                            <div class="portfolio-desc text-center">
+                                <h4 class="portfolio-post-title">@p.Title</h4>
+                                <span class="portfolio-post-cat">@p.ResearchArea</span>
+                                <h4>@Html.ActionLink("More Detail", "Detail", "Portfolio", p.Id, new { @class = "btn theme-btn-default btn-lg" })</h4>
+                            </div>
                         </div>
-                        <div class="portfolio-desc text-center">
-                            <h4 class="portfolio-post-title">Economic Assessment of Utilizing Diesel Derived From Used Lubricating Oil for Power Generation in Ghana</h4>
-                            <span class="portfolio-post-cat">Renewable Energy</span>
-                            <h4>@Html.ActionLink("More Detail", "Detail", "Portfolio", null, new { @class = "btn theme-btn-default btn-lg" })</h4>
-                        </div>
-                    </div>
-                </div><!--portfolio item -->
-
+                    </div><!--portfolio item -->
+                    
+                }
             </div><!--grid-->
         </div>
     </div><!--row-->

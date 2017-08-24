@@ -14,7 +14,7 @@ namespace SCCL.Core.Interfaces
         /// (ID, Thumbnail, Title, Research Area)
         /// </summary>
         /// <returns></returns>
-        List<Portfolio> PortfolioIndex();
+        IEnumerable<Portfolio> PortfolioIndex { get; }
 
         /// <summary>
         /// Returns Portfolio Details
@@ -22,7 +22,15 @@ namespace SCCL.Core.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Portfolio RetrievePortfolioDetails(int id);
+        Portfolio RetrievePortfolioDetailById(int id);
+
+
+        /// <summary>
+        /// Returns all images associated with a Portfolio item by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>List of Portfolio Images</returns>
+        IEnumerable<PortfolioImage> RetrievePortfolioImagesById(int id);
 
 
     }

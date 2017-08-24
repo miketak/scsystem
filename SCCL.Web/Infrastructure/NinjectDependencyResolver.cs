@@ -55,6 +55,7 @@ namespace SCCL.Web.Infrastructure
             _kernel.Bind<IServiceRepository>().To<ServiceRepository>();
             _kernel.Bind<ITestimonialRepository>().To<TestimonialRepository>();
             _kernel.Bind<IContactMessageRepository>().To<ContactMessageRepository>();
+            _kernel.Bind<IPortfolioRepository>().To<PortfolioRepository>();
         }
     }
 }
