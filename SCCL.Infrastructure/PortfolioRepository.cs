@@ -96,31 +96,29 @@ namespace SCCL.Infrastructure
             }
         }
 
-        public IEnumerable<PortfolioImage> RetrievePortfolioImagesById(int id)
+        public IEnumerable<PortfolioImage> RetrievePortfolioImageIdsById(int portfolioId)
         {
             var portfolioImages = new List<PortfolioImage>();
             var conn = DbConnection.GetConnection();
-            const string cmdText = @"sp_portfolio_images_by_id";
+            const string cmdText = @"sp_portfolio_image_ids_by_portfolioId";
 
             using (var cmd = new SqlCommand(cmdText, conn) {CommandType = CommandType.StoredProcedure})
             {
-                cmd.Parameters.AddWithValue(@"PortfolioId", id);
+                cmd.Parameters.AddWithValue("@PortfolioId", portfolioId);
 
                 try
                 {
                     conn.Open();
                     var reader = cmd.ExecuteReader();
-                    while (reader.HasRows)
-                    {
-                        var portfolioImage = new PortfolioImage
+                    if (reader.HasRows)
+                        while (reader.Read())
                         {
-                            Id = reader.GetInt32(0),
-                            PortfolioId = reader.GetInt32(1),
-                            Image = reader.IsDBNull(2) ? null : reader["PortfolioImage"] as byte[],
-                            ImageMimeType = reader.GetString(3)
-                        };
-                        portfolioImages.Add(portfolioImage);
-                    }
+                            var portfolioImage = new PortfolioImage
+                            {
+                                Id = reader.GetInt32(0)
+                            };
+                            portfolioImages.Add(portfolioImage);
+                        }
                 }
                 catch(Exception e)
                 {
@@ -130,6 +128,44 @@ namespace SCCL.Infrastructure
                 
             }
             return portfolioImages;
+        }
+
+        public PortfolioImage RetrievePortfolioImageById(int id)
+        {
+            PortfolioImage portfolioImage = null;
+            var conn = DbConnection.GetConnection();
+            const string cmdText = @"sp_portfolio_image_by_id";
+
+            using (var cmd = new SqlCommand(cmdText, conn) { CommandType = CommandType.StoredProcedure })
+            {
+                cmd.Parameters.AddWithValue("@Id", id);
+
+                try
+                {
+                    conn.Open();
+                    var reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                        while (reader.Read())
+                        {
+                            portfolioImage = new PortfolioImage
+                            {
+                                Id = reader.GetInt32(0),
+                                PortfolioId = reader.GetInt32(1),
+                                Image = reader.IsDBNull(2) ? null : reader["PortfolioImage"] as byte[],
+                                ImageMimeType = reader.GetString(3)
+                            };
+                        }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+
+            }
+
+            return portfolioImage;
+            
         }
     }
 }

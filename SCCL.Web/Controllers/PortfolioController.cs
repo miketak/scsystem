@@ -10,7 +10,7 @@ namespace SCCL.Web.Controllers
 {
     public class PortfolioController : Controller
     {
-        private IPortfolioRepository _repository;
+        private readonly IPortfolioRepository _repository;
 
         public PortfolioController(IPortfolioRepository repo)
         {
@@ -18,6 +18,7 @@ namespace SCCL.Web.Controllers
         }
 
         // GET: Portfolio
+        [Route("ourworks")]
         public ActionResult Index()
         {
             var portfolioIndex = _repository.PortfolioIndex;
@@ -25,19 +26,30 @@ namespace SCCL.Web.Controllers
             return View(portfolioIndex);
         }
 
-        public ActionResult Detail()
+        [Route("ourworks/{id}")]
+        public ActionResult Detail(int id)
         {
-            return View();
+            var portfolioDetail = _repository.RetrievePortfolioDetailById(id);
+
+            portfolioDetail.PortfolioImages = _repository.RetrievePortfolioImageIdsById(id);
+
+            return View(portfolioDetail);
+
         }
 
 
         public FileContentResult GetImage(int id)
         {
-
             var portfolioItem = _repository.RetrievePortfolioDetailById(id);
 
             return portfolioItem != null ? File(portfolioItem.Thumbnail, portfolioItem.ThumbnailMimeType) : null;
+        }
 
+        public ActionResult GetPortfolioImage(int id)
+        {
+            var portfolioImage = _repository.RetrievePortfolioImageById(id);
+
+            return portfolioImage != null ? File(portfolioImage.Image, portfolioImage.ImageMimeType) : null;
         }
     }
 }

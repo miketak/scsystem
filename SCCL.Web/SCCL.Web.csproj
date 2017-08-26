@@ -225,10 +225,6 @@
     <Content Include="Content\Images\img-2.jpg" />
     <Content Include="Content\Images\img-3.jpg" />
     <Content Include="Content\Images\pattern.png" />
-    <Content Include="Content\Images\Publications\img-1.PNG" />
-    <Content Include="Content\Images\Publications\img-2.PNG" />
-    <Content Include="Content\Images\Publications\img-3.PNG" />
-    <Content Include="Content\Images\Publications\pub-1.jpg" />
     <Content Include="Content\Images\sclogo.png" />
     <Content Include="Content\Images\Services\img-1.jpg" />
     <Content Include="Content\ionicons.css" />

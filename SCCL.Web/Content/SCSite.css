@@ -1043,9 +1043,9 @@ h4.portfolio-post-title {
   border: 2px solid #fff;
 }
 
-.btn-white:hover {
-  background-color: #fff;
-  color: #222;
+.btn-black:hover {
+    background-color: #fff;
+    color: #222;  
 }
 
 .btn-big {
@@ -2097,6 +2097,28 @@ MULTI LEVEL DROPDOWN CSS
 .newsletter-section .success {
   color: green;
   border-color: green;
+}
+
+/** Button Section Services */
+
+.btn-black {
+    background-color: transparent;
+    color: #211e1e;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    border-radius: 0px;
+    border: 2px solid #cec3c3;
+}
+
+.btn-white:hover {
+    background-color: #fff;
+    color: #222;
+}
+
+.breadstrip p {
+    margin-top: 7px;
+    color: white;
 }
 
 

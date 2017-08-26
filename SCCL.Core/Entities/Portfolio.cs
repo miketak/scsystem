@@ -28,8 +28,10 @@ namespace SCCL.Core.Entities
 
         public string ThumbnailMimeType { get; set; }
 
-        public List<byte[]> DetailImages { get; set; }
+        public IEnumerable<PortfolioImage> PortfolioImages { get; set; }
+
         public string PortfolioType { get; set; }
+
         public string Summary { get; set; }
     }
 }

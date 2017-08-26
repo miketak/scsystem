@@ -28,10 +28,15 @@ namespace SCCL.Core.Interfaces
         /// <summary>
         /// Returns all images associated with a Portfolio item by Id
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="portfolioId"></param>
         /// <returns>List of Portfolio Images</returns>
-        IEnumerable<PortfolioImage> RetrievePortfolioImagesById(int id);
+        IEnumerable<PortfolioImage> RetrievePortfolioImageIdsById(int portfolioId);
 
-
+        /// <summary>
+        /// Retrieves a Portfolio Image by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        PortfolioImage RetrievePortfolioImageById(int id);
     }
 }

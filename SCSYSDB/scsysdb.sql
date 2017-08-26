@@ -476,13 +476,26 @@ GO
 
 print '' print   ' *** Creating sp_portfolio_images_by_id'
 GO
-CREATE PROCEDURE [dbo].[sp_portfolio_images_by_id] 
+CREATE PROCEDURE [dbo].[sp_portfolio_image_ids_by_portfolioId] 
     @PortfolioId int
+AS 
+	BEGIN
+
+	SELECT [Id] 
+	FROM   [dbo].[PortfolioImages] 
+	WHERE  ([PortfolioId] = @PortfolioId)
+	END
+GO
+
+print '' print   ' *** Creating sp_portfolio_image_by_id'
+GO
+CREATE PROCEDURE [dbo].[sp_portfolio_image_by_id] 
+    @Id int
 AS 
 	BEGIN
 
 	SELECT [Id], [PortfolioId], [PortfolioImage], [ImageMimeType] 
 	FROM   [dbo].[PortfolioImages] 
-	WHERE  ([PortfolioId] = @PortfolioId)
+	WHERE  ([Id] = @Id)
 	END
 GO

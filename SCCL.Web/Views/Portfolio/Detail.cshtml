@@ -1,16 +1,18 @@
-﻿@{
-    ViewBag.Title = "Publications - Renewable Energy";
+﻿@model SCCL.Core.Entities.Portfolio
+
+@{
+    ViewBag.Title = Model.PortfolioType;
 }
 
 @section metatags{
-    <meta name="description" content="">
+    <meta name="description" content="Browse our rich library of publications and projects undertaken by Stable Corps">
     <meta name="keywords" content="economics, diesel, oil, generation, ghana, power">
 }
 
 <!--Title Strip-->
 <section id="content-region-3" class="page-tree-bg">
-    <div class="container text-center">
-        <p style="color: white;">@Html.ActionLink("Our Works", "Index", "Portfolio", null, new { @style = "color:white;"}) > Publications</p>
+    <div class="container text-center breadstrip">
+        <p>@Html.ActionLink("Our Works", "Index", "Portfolio", null, new { @style = "color:white;"}) > Publications</p>
     </div>
 </section>
 <!--End of Title Strip-->
@@ -22,22 +24,19 @@
         <div class="col-md-8 portfolio-single-slide margin-btm-40">
             <div class="flexslider">
                 <ul class="slides">
-                    <li>
-                        <img src="~/Content/Images/Publications/img-1.png" />
-                    </li>
-                    <li>
-                        <img src="~/Content/Images/Publications/img-2.png" />
-                    </li>
-                    <li>
-                        <img src="~/Content/Images/Publications/img-3.png" />
-                    </li>
+                    @foreach (var p in Model.PortfolioImages)
+                    {
+                        <li>
+                            <img class="img-responsive" src="@Url.Action("GetPortfolioImage", "Portfolio", new { p.Id })" alt="@Html.DisplayName(Model.PortfolioType)"/>
+                        </li>
+                    }
                 </ul>
             </div><!--flex slider-->
             <div class="portfolio-single-desc">
-                <h3>Economic Assessment of Utilizing Diesel Derived From Used Lubricating Oil for Power Generation in Ghana</h3>
+                <h3>@Model.Title</h3>
                 <h4 style="color:black">Abstract</h4>
                 <p>
-                    There is potential to recycle used oil (UO), waste lubricating oils from automobiles or machineries to produce diesel fuel (DF) that can contribute to energy supply in Ghana. However, very little is known about the economics of recycling UO to DF (Rec-UO-to-DF) and the DF use thereof for power generation (DF-power) in Ghana. This study assessed the economics of Rec-UO-to-DF and DF-power in Ghana under 2016 economic conditions, through developing process and economic models based on literature. The economics were assessed relative to prevailing diesel price ($0.79/l) and grid power prices ($0.08-0.24/kWh- residential and $0.24-0.41/kWh- commercial). Sensitivity analysis was undertaken to establish impacts of UO pricing on DF prices, and DF pricing on power prices. Maximum Expected Selling Price of- UO (MESP-UO) and -DF (MESP-DF) required for economic viability of the Rec-UO-to-DF and DF-power respectively were determined. The results showed a 12000 l UO/day recycling facility could produce ~8420 l DF/day, which could generate 1250 kW power via a diesel generator. UO price was found influential on DF price- 10% increase in UO price yields 3.2% increase in DF price. The MESP-UO was found at $0.21/l. Regarding DF-power, 10% increase in DF price results in 7.5% increase in power price, suggesting high reliance of process economics on the DF price. Instabilities in fuel prices therefore implies high uncertainties regarding economic viability. At prevailing DF price ($0.79/l), power price for profitability was found at $0.31/kWh (within commercial range), implying DF-power is economical for only commercial use. Extension of DF-power to residential users would require 31% reduction of prevailing DF price, which could be feasible if Rec-UO-to-DF process acquires UO at $0.05/l (~24% of MESP-UO). Enforcing environmental regulations on UO management could help lower UO prices, which will promote its recycling to DF for DF power, and thus contribute to sustainable power supply.
+                    @Model.Summary
                 </p>
                 <hr>
             </div><!--portfolio detail-->
@@ -45,20 +44,20 @@
         <div class="col-md-4">
             <div class="portfolio-side-bar">
                 <p>
-                    <strong>Author:</strong> Richard K. Padi
+                    <strong>Author:</strong> @Model.Author
                 </p>
                 <p>
-                    <strong>Publisher:</strong> IJIRD, Volume 6, Issue 7, July 2017
+                    <strong>Publisher:</strong> @Model.Publisher
                 </p>
                 <p>
-                    <strong>Research Area:</strong> Renewable Energy
+                    <strong>Research Area:</strong> @Model.ResearchArea
                 </p>
                
                 <br>
                 <p>
                     <hr/>
                     <div class="text-center">
-                        <a href="http://www.ijird.com/index.php/ijird/article/view/117195" target="_blank" class="btn btn-radius theme-btn-color">View Full Text</a><br/><hr/>
+                        <a href="@Model.LinkUrl" target="_blank" class="btn btn-radius theme-btn-color">View Full Text</a><br/><hr/>
                     </div>
 
                     <div class="text-center">

@@ -13,12 +13,13 @@
             <li>
                 @Html.ActionLink("Home", "Index", "Home")
             </li>
-            <li>
-                @Html.ActionLink("Solutions", "Index", "Solutions")
-            </li>
-            <li>
-                @Html.ActionLink("Services", "Index", "Services")
-            </li>            
+            <li class="dropdown">
+                @Html.ActionLink("Solutions", "Index", "Solutions", null, new { @class = "dropdown-toggle js-activated"})
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("Solutions", "Index", "Solutions")</li>
+                    <li>@Html.ActionLink("Services", "Index", "Services")</li>
+                </ul>
+            </li>           
             <li>
                 @Html.ActionLink("Our Works", "Index", "Portfolio")
             </li>

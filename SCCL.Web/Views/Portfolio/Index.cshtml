@@ -11,8 +11,8 @@
 
 <!--Title Strip-->
 <section id="content-region-3" class="page-tree-bg">
-    <div class="container text-center">
-        <p style="color: white;">Our Works</p>
+    <div class="container text-center breadstrip">
+        <p>Our Works</p>
     </div>
 </section>
 <!--End of Title Strip-->
@@ -47,7 +47,7 @@
                             <div class="portfolio-desc text-center">
                                 <h4 class="portfolio-post-title">@p.Title</h4>
                                 <span class="portfolio-post-cat">@p.ResearchArea</span>
-                                <h4>@Html.ActionLink("More Detail", "Detail", "Portfolio", p.Id, new { @class = "btn theme-btn-default btn-lg" })</h4>
+                                <h4>@Html.ActionLink("More Detail", "Detail", "Portfolio", new {p.Id}, new { @class = "btn theme-btn-default btn-lg" })</h4>
                             </div>
                         </div>
                     </div><!--portfolio item -->
