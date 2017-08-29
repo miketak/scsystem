@@ -16,27 +16,38 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		GdDeploy|Any CPU = GdDeploy|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{73F31790-54A0-44D2-AE8C-2363B95FC257}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{73F31790-54A0-44D2-AE8C-2363B95FC257}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73F31790-54A0-44D2-AE8C-2363B95FC257}.GdDeploy|Any CPU.ActiveCfg = GdDeploy|Any CPU
+		{73F31790-54A0-44D2-AE8C-2363B95FC257}.GdDeploy|Any CPU.Build.0 = GdDeploy|Any CPU
 		{73F31790-54A0-44D2-AE8C-2363B95FC257}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73F31790-54A0-44D2-AE8C-2363B95FC257}.Release|Any CPU.Build.0 = Release|Any CPU
 		{604757BE-C003-4FF2-8EB6-75CB6D1E6471}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{604757BE-C003-4FF2-8EB6-75CB6D1E6471}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{604757BE-C003-4FF2-8EB6-75CB6D1E6471}.GdDeploy|Any CPU.ActiveCfg = Release|Any CPU
+		{604757BE-C003-4FF2-8EB6-75CB6D1E6471}.GdDeploy|Any CPU.Build.0 = Release|Any CPU
 		{604757BE-C003-4FF2-8EB6-75CB6D1E6471}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{604757BE-C003-4FF2-8EB6-75CB6D1E6471}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3E60517C-1C15-4676-9620-2C2531CA91DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3E60517C-1C15-4676-9620-2C2531CA91DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E60517C-1C15-4676-9620-2C2531CA91DE}.GdDeploy|Any CPU.ActiveCfg = Release|Any CPU
+		{3E60517C-1C15-4676-9620-2C2531CA91DE}.GdDeploy|Any CPU.Build.0 = Release|Any CPU
 		{3E60517C-1C15-4676-9620-2C2531CA91DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E60517C-1C15-4676-9620-2C2531CA91DE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FB31687E-312F-4206-B2E9-32563A161618}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FB31687E-312F-4206-B2E9-32563A161618}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB31687E-312F-4206-B2E9-32563A161618}.GdDeploy|Any CPU.ActiveCfg = Release|Any CPU
+		{FB31687E-312F-4206-B2E9-32563A161618}.GdDeploy|Any CPU.Build.0 = Release|Any CPU
 		{FB31687E-312F-4206-B2E9-32563A161618}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB31687E-312F-4206-B2E9-32563A161618}.Release|Any CPU.Build.0 = Release|Any CPU
 		{13C044E9-BD7B-4228-86E7-2C132C554C19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{13C044E9-BD7B-4228-86E7-2C132C554C19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13C044E9-BD7B-4228-86E7-2C132C554C19}.GdDeploy|Any CPU.ActiveCfg = Release|Any CPU
+		{13C044E9-BD7B-4228-86E7-2C132C554C19}.GdDeploy|Any CPU.Build.0 = Release|Any CPU
 		{13C044E9-BD7B-4228-86E7-2C132C554C19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13C044E9-BD7B-4228-86E7-2C132C554C19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
